@@ -1,4 +1,5 @@
 # hpp blog
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/08281bcf-6826-4599-ab95-6232ad74b816/deploy-status)](https://app.netlify.com/sites/hpp-blog/deploys)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8ef9682d-c4dd-4269-8fc8-90055c6bd725/deploy-status)](https://app.netlify.com/sites/hpp-blog/deploys)
 
