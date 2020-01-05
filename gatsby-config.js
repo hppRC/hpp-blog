@@ -1,10 +1,10 @@
 const config = {
-  siteTitle: `Gatsby Starter skeleton blog`,
-  siteTitleAlt: `Gatsby Starter skeleton blog - @hppRC/gatsby-starter-skeleton-blog`,
-  siteHeadline: `Gatsby Starter skeleton blog - Gatsby Starter from @hppRC`,
-  siteUrl: `https://gatsby-starter-skeleton-blog.netlify.com`,
-  siteDescription: `simple gatsby starter blog with mdx, typescript, pwa`,
-  siteLanguage: `en`,
+  siteTitle: `hpp blog🌝`,
+  siteTitleAlt: `hpp blog - @hppRC/hpp-blog`,
+  siteHeadline: `personal blog of @hppRC`,
+  siteUrl: `https://blog.hpprc.com`,
+  siteDescription: `personal blog made with Gatsby, TypeScript.`,
+  siteLanguage: `ja`,
   siteImage: `/banner.png`,
   author: `@osaremochi`, // twitter account id
   basePath: `/`
