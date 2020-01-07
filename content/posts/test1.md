@@ -10,7 +10,7 @@ tags:
 cover: /assets/test1.jpg
 ---
 
-# this is test1
+# this is test
 
 ```javascript{1,5-8}:title=gatsby-config.js
 plugins: [
@@ -32,8 +32,6 @@ digraph graphname {
 ```
 
 # Look at this Video:
-
-`youtube:https://www.youtube.com/embed/2Xc9gXyf2G4`
 
 $
 f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi

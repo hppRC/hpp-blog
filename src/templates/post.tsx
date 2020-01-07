@@ -1,11 +1,11 @@
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'katex/dist/katex.min.css';
 
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import { SEO } from 'src/components';
+import { SEO, StyledToc } from 'src/components';
 
 import styled from '@emotion/styled';
 
@@ -14,6 +14,10 @@ type Props = {
     mdx: {
       body: string;
       excerpt: string;
+      headings: {
+        value: string;
+        depth: number;
+      }[];
       frontmatter: {
         title: string;
         date: string;
@@ -36,8 +40,12 @@ const Post: React.FCX<{
   body: string;
   date: string;
   tags: string[];
+  headings: {
+    value: string;
+    depth: number;
+  }[];
   fluid: FluidObject;
-}> = ({ title, body, date, tags, fluid }) => (
+}> = ({ title, body, date, tags, headings, fluid }) => (
   <article>
     <section>
       <h1>{title}</h1>
@@ -48,14 +56,15 @@ const Post: React.FCX<{
       ))}
       <MDXRenderer>{body}</MDXRenderer>
     </section>
-    <section>目次</section>
+    <StyledToc headings={headings} />
   </article>
 );
 
 const StyledPost = styled(Post)``;
 
 export default ({ data, pageContext }: Props) => {
-  const { body, excerpt, frontmatter } = data.mdx;
+  console.log(data);
+  const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;
   return (
@@ -71,6 +80,7 @@ export default ({ data, pageContext }: Props) => {
         body={body}
         date={date}
         tags={tags}
+        headings={headings}
         fluid={fluid}
       />
     </>
@@ -82,6 +92,10 @@ export const query = graphql`
     mdx(frontmatter: { slug: { eq: $slug } }) {
       body
       excerpt
+      headings {
+        value
+        depth
+      }
       frontmatter {
         title
         date(formatString: "YYYY-MM-DD")
