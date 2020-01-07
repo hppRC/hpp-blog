@@ -1,3 +1,5 @@
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
 import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -36,13 +38,16 @@ const Post: React.FCX<{
   fluid: FluidObject;
 }> = ({ title, body, date, tags, fluid }) => (
   <article>
-    <h1>{title}</h1>
-    <Img fluid={fluid} alt='eyecatch image' backgroundColor={'#fff'} />
-    <h2>{date}</h2>
-    {tags.map((tag, i) => (
-      <li key={i}>{tag}</li>
-    ))}
-    <MDXRenderer>{body}</MDXRenderer>
+    <section>
+      <h1>{title}</h1>
+      <Img fluid={fluid} alt='eyecatch image' />
+      <h2>{date}</h2>
+      {tags.map((tag, i) => (
+        <li key={i}>{tag}</li>
+      ))}
+      <MDXRenderer>{body}</MDXRenderer>
+    </section>
+    <section>目次</section>
   </article>
 );
 

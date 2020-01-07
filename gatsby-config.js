@@ -47,6 +47,8 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
+          `gatsby-remark-code-titles`,
+
           `gatsby-remark-relative-images`,
           {
             resolve: `gatsby-remark-images`,
@@ -54,6 +56,16 @@ module.exports = {
               maxWidth: 690,
               quality: 90,
               linkImagesToOriginal: true
+            }
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: `language-`,
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: true,
+              noInlineHighlight: false
             }
           }
         ]
@@ -128,7 +140,7 @@ module.exports = {
               }
             `,
             output: `/rss.xml`,
-            title: `Gatsby Starter skeleton blog RSS feed`
+            title: `${config.siteTitle} RSS feed`
           }
         ]
       }
