@@ -12,7 +12,7 @@ cover: /assets/test1.jpg
 
 # this is test1
 
-```javascript:title=gatsby-config.js
+```javascript{1,5-8}:title=gatsby-config.js
 plugins: [
   {
     resolve: `gatsby-transformer-remark`,
@@ -22,6 +22,22 @@ plugins: [
   }
 ];
 ```
+
+```dot
+digraph graphname {
+  a -> b;
+  b -> c;
+  a -> c;
+}
+```
+
+# Look at this Video:
+
+`youtube:https://www.youtube.com/embed/2Xc9gXyf2G4`
+
+$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 

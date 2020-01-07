@@ -86,7 +86,6 @@ export const GlobalCSS = () => (
 
       /* Code blocks */
       pre[class*='language-'] {
-        padding: 1em;
         margin: 0.5em 0;
         overflow: auto;
         border-radius: 0.3em;
@@ -207,13 +206,13 @@ export const GlobalCSS = () => (
         margin-right: -1em;
         margin-left: -1em;
         padding-right: 1em;
-        padding-left: 0.75em;
-        border-left: 0.25em solid #b0b7d6;
+        padding-left: 0.8em;
+        border-left: 0.2em solid #b0b7d6;
       }
 
       .gatsby-highlight {
         background-color: #09090f;
-        border-radius: 1px;
+        border-radius: 0.3em;
         margin: 0.5em 0;
         padding: 1em;
         overflow: auto;
@@ -221,6 +220,8 @@ export const GlobalCSS = () => (
 
       .gatsby-highlight pre[class*='language-'] {
         background-color: transparent;
+        margin: 0;
+        padding: 0;
         overflow: initial;
         float: left; /* 1 */
         min-width: 100%; /* 2 */
