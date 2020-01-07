@@ -177,6 +177,13 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: `UA-149661454-2`
+      }
+    },
     // gatsby-plugin-manifest should be described before gatsby-plugin-offline
     {
       resolve: `gatsby-plugin-manifest`,
@@ -187,7 +194,7 @@ module.exports = {
         Scope: `/`,
         start_url: `/?utm_source=homescreen`,
         background_color: `#ffffff`,
-        theme_color: `#090909`,
+        theme_color: `#09090f`,
         display: `standalone`,
         icon: `./src/images/icon.png`
       }

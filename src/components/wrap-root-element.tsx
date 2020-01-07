@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-
-import { SwitchContainer } from '../store';
+import { ColorModeContainer, SwitchContainer } from 'src/store';
 
 export const WrapRootElement = ({ element }: { element: ReactNode }) => (
-  <SwitchContainer.Provider>{element}</SwitchContainer.Provider>
+  <ColorModeContainer.Provider>
+    <SwitchContainer.Provider>{element}</SwitchContainer.Provider>
+  </ColorModeContainer.Provider>
 );
 
 export default WrapRootElement;

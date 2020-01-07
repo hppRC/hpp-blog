@@ -212,7 +212,6 @@ export const GlobalCSS = () => (
 
       .gatsby-highlight {
         background-color: #09090f;
-        border-radius: 0.3em;
         margin: 0.5em 0;
         padding: 1em;
         overflow: auto;
@@ -220,8 +219,6 @@ export const GlobalCSS = () => (
 
       .gatsby-highlight pre[class*='language-'] {
         background-color: transparent;
-        margin: 0;
-        padding: 0;
         overflow: initial;
         float: left; /* 1 */
         min-width: 100%; /* 2 */
