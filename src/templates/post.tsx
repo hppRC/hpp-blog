@@ -1,11 +1,13 @@
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'katex/dist/katex.min.css';
 
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 import { SEO, StyledToc } from 'src/components';
+import Background from 'src/images/background.jpg';
+import { baseStyle } from 'src/styles';
 
 import styled from '@emotion/styled';
 
@@ -45,25 +47,94 @@ const Post: React.FCX<{
     depth: number;
   }[];
   fluid: FluidObject;
-}> = ({ title, body, date, tags, headings, fluid }) => (
-  <article>
+}> = ({ title, body, date, tags, headings, fluid, className }) => (
+  <article className={className}>
     <section>
       <h1>{title}</h1>
-      <Img fluid={fluid} alt='eyecatch image' />
-      <h2>{date}</h2>
-      {tags.map((tag, i) => (
-        <li key={i}>{tag}</li>
-      ))}
-      <MDXRenderer>{body}</MDXRenderer>
+      <div>
+        <h2>{date}</h2>
+        <ul>
+          {tags.map((tag, i) => (
+            <li key={i}>{tag}</li>
+          ))}
+        </ul>
+      </div>
     </section>
-    <StyledToc headings={headings} />
+    <div>
+      <section>
+        <Img fluid={fluid} alt='eyecatch image' />
+        <MDXRenderer>{body}</MDXRenderer>
+      </section>
+      <StyledToc headings={headings} />
+    </div>
   </article>
 );
 
-const StyledPost = styled(Post)``;
+const StyledPost = styled(Post)`
+  > section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 75vh;
+    background: center / cover no-repeat url(${Background});
+    background-attachment: fixed;
+    /* staf roll */
+    /* <a href="https://jp.freepik.com/free-photos-vectors/background">Freepik - jp.freepik.com によって作成された background ベクトル</a> */
+
+    color: #fff;
+
+    h1 {
+      z-index: 1;
+      font-size: 5rem;
+    }
+
+    div {
+      display: flex;
+      z-index: 1;
+
+      ul {
+        list-style: none;
+        display: flex;
+      }
+    }
+
+    ::after {
+      content: '';
+      background-color: #09090f00;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  > div {
+    ${baseStyle};
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
+  @media screen and (max-width: 1100px) {
+  }
+  @media screen and (max-width: 768px) {
+    > div {
+      display: flex;
+      section:nth-of-type(2) {
+        display: none;
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-height: 430px) {
+  }
+`;
 
 export default ({ data, pageContext }: Props) => {
-  console.log(data);
   const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;

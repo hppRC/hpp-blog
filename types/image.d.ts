@@ -6,7 +6,7 @@ declare module '*.png' {
   const PNGsrc: string;
   export default PNGsrc;
 }
-declare module '*.jpe?g' {
+declare module '*.jpg' {
   const JPGsrc: string;
   export default JPGsrc;
 }
