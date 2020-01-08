@@ -5,8 +5,10 @@ import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
+import { animated, useSpring } from 'react-spring';
 import { SEO, StyledSideContents } from 'src/components';
 import Background from 'src/images/background.jpg';
+import { ColorModeContainer } from 'src/store';
 import { baseStyle } from 'src/styles';
 
 import styled from '@emotion/styled';
@@ -47,28 +49,35 @@ const Post: React.FCX<{
     depth: number;
   }[];
   fluid: FluidObject;
-}> = ({ title, body, date, tags, headings, fluid, className }) => (
-  <article className={className}>
-    <section>
-      <h1>{title}</h1>
-      <div>
-        <h2>{date}</h2>
-        <ul>
-          {tags.map((tag, i) => (
-            <li key={i}>{tag}</li>
-          ))}
-        </ul>
-      </div>
-    </section>
-    <div>
+  mode: boolean;
+}> = ({ title, body, date, tags, headings, fluid, mode, className }) => {
+  const props = useSpring({
+    backgroundColor: mode ? '#ffffff' : '#09090f',
+    color: mode ? '#09090f' : '#ffffff'
+  });
+  return (
+    <animated.article className={className} style={props}>
       <section>
-        <Img fluid={fluid} alt='eyecatch image' />
-        <MDXRenderer>{body}</MDXRenderer>
+        <h1>{title}</h1>
+        <div>
+          <h2>{date}</h2>
+          <ul>
+            {tags.map((tag, i) => (
+              <li key={i}>{tag}</li>
+            ))}
+          </ul>
+        </div>
       </section>
-      <StyledSideContents headings={headings} />
-    </div>
-  </article>
-);
+      <div>
+        <section>
+          <Img fluid={fluid} alt='eyecatch image' />
+          <MDXRenderer>{body}</MDXRenderer>
+        </section>
+        <StyledSideContents headings={headings} />
+      </div>
+    </animated.article>
+  );
+};
 
 const StyledPost = styled(Post)`
   > section {
@@ -117,7 +126,6 @@ const StyledPost = styled(Post)`
     ${baseStyle};
     display: grid;
     grid-template-columns: 3fr 0.75fr;
-    background-color: #ffffff;
   }
 
   @media screen and (max-width: 1100px) {
@@ -140,6 +148,7 @@ export default ({ data, pageContext }: Props) => {
   const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;
+  const { mode } = ColorModeContainer.useContainer();
   return (
     <>
       <SEO
@@ -155,6 +164,7 @@ export default ({ data, pageContext }: Props) => {
         tags={tags}
         headings={headings}
         fluid={fluid}
+        mode={mode}
       />
     </>
   );

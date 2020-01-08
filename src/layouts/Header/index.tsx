@@ -41,22 +41,43 @@ export const StyledHeader = styled(Header)`
 
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
+  padding: 0 0.5rem;
+
+  h1 {
+    color: #ffffff;
+  }
 
   nav {
-    padding: 2rem;
+    padding: 1.5rem;
     ul {
       display: flex;
       justify-content: center;
       list-style: none;
       li {
         a {
+          color: #ffffff;
+          text-decoration: none;
           padding: 2rem;
         }
       }
     }
   }
   z-index: 1000;
+  @media screen and (max-width: 1100px) {
+  }
+  @media screen and (max-width: 768px) {
+    nav {
+      padding: 1rem 0.5rem;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    nav {
+      padding: 0.5rem 0;
+    }
+  }
+  @media screen and (max-height: 430px) {
+  }
 `;
 
 export default StyledHeader;

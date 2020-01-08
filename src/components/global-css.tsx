@@ -86,7 +86,6 @@ export const GlobalCSS = () => (
 
       /* Code blocks */
       pre[class*='language-'] {
-        margin: 0.5em 0;
         overflow: auto;
         border-radius: 0.3em;
       }
@@ -203,8 +202,6 @@ export const GlobalCSS = () => (
       .gatsby-highlight-code-line {
         background-color: #1f1f30;
         display: block;
-        margin-right: -1em;
-        margin-left: -1em;
         padding-right: 1em;
         padding-left: 0.8em;
         border-left: 0.2em solid #b0b7d6;
@@ -212,31 +209,27 @@ export const GlobalCSS = () => (
 
       .gatsby-highlight {
         background-color: #09090f;
-        margin: 0.5em 0;
-        padding: 1em;
+        padding: 1rem;
+        width: 100%;
         overflow: auto;
       }
 
       .gatsby-highlight pre[class*='language-'] {
         background-color: transparent;
-        overflow: initial;
-        float: left; /* 1 */
-        min-width: 100%; /* 2 */
       }
 
       .gatsby-highlight pre[class*='language-'].line-numbers {
-        padding-left: 2.8em; /* 3 */
       }
 
       .gatsby-code-title {
-        display: table;
+        display: inline-block;
         background-color: #09090f;
         color: #fff;
 
         font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
           Courier New, monospace;
-        margin-bottom: -0.65em;
-        padding: 1rem 1.2rem 0.5rem 1.2rem;
+        margin-bottom: -1em;
+        padding: 1rem 1.2rem 1rem 1.2rem;
         border-radius: 3px 3px 0 0;
         font-size: 1.4rem;
         line-height: 1;
