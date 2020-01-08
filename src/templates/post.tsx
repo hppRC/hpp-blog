@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import { SEO, StyledToc } from 'src/components';
+import { SEO, StyledSideContents } from 'src/components';
 import Background from 'src/images/background.jpg';
 import { baseStyle } from 'src/styles';
 
@@ -65,7 +65,7 @@ const Post: React.FCX<{
         <Img fluid={fluid} alt='eyecatch image' />
         <MDXRenderer>{body}</MDXRenderer>
       </section>
-      <StyledToc headings={headings} />
+      <StyledSideContents headings={headings} />
     </div>
   </article>
 );

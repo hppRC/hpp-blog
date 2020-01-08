@@ -14,7 +14,7 @@ type Props = {
   }[];
 };
 
-const Toc: React.FCX<Props> = ({ headings, className }) => {
+const SideContents: React.FCX<Props> = ({ headings, className }) => {
   slugger.reset();
   return (
     <Location>
@@ -35,7 +35,7 @@ const Toc: React.FCX<Props> = ({ headings, className }) => {
   );
 };
 
-export const StyledToc = styled(Toc)`
+export const StyledSideContents = styled(SideContents)`
   padding: 1rem;
 
   ul {
@@ -66,4 +66,4 @@ export const StyledToc = styled(Toc)`
   }
 `;
 
-export default StyledToc;
+export default StyledSideContents;
