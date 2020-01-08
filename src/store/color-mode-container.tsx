@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createContainer } from 'unstated-next';
 
 const useColorModeContainer = () => {
-  const [mode, set] = useState(false);
+  const [mode, set] = useState(true);
   const toggle = () => {
     set(mode => !mode);
   };

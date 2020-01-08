@@ -22,7 +22,7 @@ const SideContents: React.FCX<Props> = ({ headings, className }) => {
         <section className={className}>
           <ul>
             {headings.map(({ value, depth }, i) => (
-              <li key={i} style={{ paddingLeft: `${(depth - 2) * 12}px` }}>
+              <li key={i} style={{ paddingLeft: `${(depth - 2) * 1.2}rem` }}>
                 <Link to={`${location.pathname}#${slugger.slug(value)}`}>
                   {value}
                 </Link>
@@ -36,16 +36,14 @@ const SideContents: React.FCX<Props> = ({ headings, className }) => {
 };
 
 export const StyledSideContents = styled(SideContents)`
-  padding: 1rem;
+  padding: 1rem 0 1rem 3rem;
 
   ul {
     position: -webkit-sticky;
     position: sticky;
     top: 7.5vh;
-  }
-
-  ul {
     list-style: none;
+
     li {
       padding: 0.5rem 0.25rem;
       a {

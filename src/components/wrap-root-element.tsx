@@ -1,10 +1,20 @@
+import { ThemeProvider } from 'emotion-theming';
 import React, { ReactNode } from 'react';
-import { ColorModeContainer, SwitchContainer } from 'src/store';
+import { ColorModeContainer } from 'src/store';
+
+const theme = {
+  colors: {
+    darkCharacterColor: '#ffffff',
+    darkBackground: '#09090f',
+    lightCharacterColor: '#09090f',
+    lightBackground: '#ffffff'
+  }
+};
 
 export const WrapRootElement = ({ element }: { element: ReactNode }) => (
-  <ColorModeContainer.Provider>
-    <SwitchContainer.Provider>{element}</SwitchContainer.Provider>
-  </ColorModeContainer.Provider>
+  <ThemeProvider theme={theme}>
+    <ColorModeContainer.Provider>{element}</ColorModeContainer.Provider>
+  </ThemeProvider>
 );
 
 export default WrapRootElement;

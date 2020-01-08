@@ -103,6 +103,7 @@ const StyledPost = styled(Post)`
 
     ::after {
       content: '';
+      /* 背景画像に被せる色の指定 */
       background-color: #09090f00;
       position: absolute;
       left: 0;
@@ -115,7 +116,8 @@ const StyledPost = styled(Post)`
   > div {
     ${baseStyle};
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 0.75fr;
+    background-color: #ffffff;
   }
 
   @media screen and (max-width: 1100px) {

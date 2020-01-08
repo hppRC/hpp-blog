@@ -11,7 +11,8 @@
     "format": "prettier --write src/**/*.{js,jsx,tsx}",
     "start": "yarn develop",
     "serve": "gatsby serve",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@babel/core": "^7.7.4",
@@ -25,6 +26,7 @@
     "@types/react": "^16.9.14",
     "@types/react-helmet": "^5.0.14",
     "core-js": "^3.4.7",
+    "emotion-theming": "^10.0.27",
     "eslint-scope": "^5.0.0",
     "gatsby": "^2.18.6",
     "gatsby-image": "^2.2.34",
@@ -64,6 +66,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
+    "react-spring": "^9.0.0-beta.34",
     "typescript": "^3.7.2",
     "unstated-next": "^1.1.0",
     "webpack": "^4.41.2"

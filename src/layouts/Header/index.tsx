@@ -1,37 +1,38 @@
 import { Link } from 'gatsby';
 import React from 'react';
+import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
 import { StyledModeButton as ModeButton } from './mode-button';
 
-const Header: React.FCX = ({ className }) => (
-  <header className={className}>
-    <h1>Gatsby starter skeleton blog</h1>
-    <nav>
-      <ul>
-        <li>
-          <Link to='/'>Top</Link>
-        </li>
-        <li>
-          <Link to='/about'>About</Link>
-        </li>
-        <li>
-          <Link to='/contact'>Contact</Link>
-        </li>
-        <li>
-          <Link to='/posts'>Posts</Link>
-        </li>
-        <li>
-          <Link to='/404'>404</Link>
-        </li>
-        <li>
-          <ModeButton />
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+const Header: React.FCX = ({ className }) => {
+  const { mode } = ColorModeContainer.useContainer();
+  return (
+    <header className={className}>
+      <h1>hpp blog🌝</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Top</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/contact'>Contact</Link>
+          </li>
+          <li>
+            <Link to='/posts'>Posts</Link>
+          </li>
+          <li>
+            <ModeButton mode={mode} />
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export const StyledHeader = styled(Header)`
   position: fixed;
