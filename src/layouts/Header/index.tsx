@@ -1,34 +1,16 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
-import { StyledModeButton } from './mode-button';
+import ModeButton from './mode-button';
 
-const Header: React.FCX = ({ className }) => {
-  const { mode } = ColorModeContainer.useContainer();
+const Header: React.FCX<{ mode: boolean }> = ({ className }) => {
   return (
     <header className={className}>
       <h1>hpp blog🌝</h1>
       <nav>
-        <ul>
-          <li>
-            <Link to='/'>Top</Link>
-          </li>
-          <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
-            <Link to='/contact'>Contact</Link>
-          </li>
-          <li>
-            <Link to='/posts'>Posts</Link>
-          </li>
-          <li>
-            <StyledModeButton mode={mode} />
-          </li>
-        </ul>
+        <ModeButton />
       </nav>
     </header>
   );
@@ -50,18 +32,6 @@ export const StyledHeader = styled(Header)`
 
   nav {
     padding: 1.5rem;
-    ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      li {
-        a {
-          color: #ffffff;
-          text-decoration: none;
-          padding: 2rem;
-        }
-      }
-    }
   }
   z-index: 1000;
   @media screen and (max-width: 1100px) {
@@ -80,4 +50,7 @@ export const StyledHeader = styled(Header)`
   }
 `;
 
-export default StyledHeader;
+export default () => {
+  const { mode } = ColorModeContainer.useContainer();
+  return <StyledHeader mode={mode} />;
+};

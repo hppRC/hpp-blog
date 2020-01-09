@@ -22,6 +22,7 @@ export const StyledFooter = styled(Footer)`
   align-items: center;
   width: 100vw;
   height: 10vh;
+  transition: color 0.3s;
 `;
 
 export default StyledFooter;
