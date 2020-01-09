@@ -5,3 +5,4 @@ export * from './wrap-page-element';
 export * from './wrap-root-element';
 export * from './form';
 export * from './side-contents';
+export * from './twitter-share-button';

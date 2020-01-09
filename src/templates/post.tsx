@@ -5,8 +5,7 @@ import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import { animated, useSpring } from 'react-spring';
-import { SEO, StyledSideContents } from 'src/components';
+import { SEO, StyledSideContents, StyledTwitterShareButton } from 'src/components';
 import Background from 'src/images/background.jpg';
 import { ColorModeContainer } from 'src/store';
 import { baseStyle } from 'src/styles';
@@ -71,6 +70,7 @@ const Post: React.FCX<{
         </section>
         <StyledSideContents headings={headings} mode={mode} />
       </div>
+      <StyledTwitterShareButton title={title} id='twitter_share_button' />
     </article>
   );
 };
@@ -118,7 +118,7 @@ const StyledPost = styled(Post)`
     }
   }
 
-  > div {
+  > div:nth-of-type(1) {
     ${baseStyle};
     display: grid;
     grid-template-columns: 3fr 0.75fr;
@@ -127,6 +127,13 @@ const StyledPost = styled(Post)`
     section {
       transition: color 0.3s;
     }
+  }
+
+  #twitter_share_button {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+    outline: none;
   }
 
   @media screen and (max-width: 1100px) {
