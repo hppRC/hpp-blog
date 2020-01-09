@@ -119,12 +119,12 @@ const StyledPost = styled(Post)`
   }
 
   > div:nth-of-type(1) {
-    ${baseStyle};
     display: grid;
     grid-template-columns: 3fr 0.75fr;
     background-color: transparent;
 
     section {
+      ${baseStyle};
       transition: color 0.3s;
     }
   }
@@ -147,6 +147,26 @@ const StyledPost = styled(Post)`
     }
   }
   @media screen and (max-width: 480px) {
+    width: 100vw;
+
+    > div:nth-of-type(1) {
+      section {
+        width: 100vw;
+        h1 {
+          padding: 3rem 0 1rem 0;
+        }
+        h2 {
+          padding: 2.5rem 0 1rem 0;
+        }
+        h3 {
+          padding: 1.5rem 0 1rem 0;
+        }
+      }
+    }
+    #twitter_share_button {
+      bottom: 5rem;
+      right: 1rem;
+    }
   }
   @media screen and (max-height: 430px) {
   }

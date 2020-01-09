@@ -215,7 +215,6 @@ export const GlobalCSS = () => {
           background-color: #09090f;
           padding: 1rem;
           width: 100%;
-          overflow: auto;
         }
 
         .gatsby-highlight pre[class*='language-'] {

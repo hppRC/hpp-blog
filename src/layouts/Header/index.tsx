@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react';
 import { ColorModeContainer } from 'src/store';
 
@@ -8,7 +9,11 @@ import ModeButton from './mode-button';
 const Header: React.FCX<{ mode: boolean }> = ({ className }) => {
   return (
     <header className={className}>
-      <h1>hpp blog🌝</h1>
+      <div>
+        <Link to='/'>
+          <h1>hpp blog🌝</h1>
+        </Link>
+      </div>
       <nav>
         <ModeButton />
       </nav>
@@ -26,8 +31,15 @@ export const StyledHeader = styled(Header)`
   width: 100vw;
   padding: 0 0.5rem;
 
-  h1 {
-    color: #ffffff;
+  div {
+    padding: 1rem;
+
+    a {
+      text-decoration: none;
+      h1 {
+        color: #ffffff;
+      }
+    }
   }
 
   nav {
