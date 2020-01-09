@@ -4,7 +4,7 @@ import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
-import { StyledModeButton as ModeButton } from './mode-button';
+import { StyledModeButton } from './mode-button';
 
 const Header: React.FCX = ({ className }) => {
   const { mode } = ColorModeContainer.useContainer();
@@ -26,7 +26,7 @@ const Header: React.FCX = ({ className }) => {
             <Link to='/posts'>Posts</Link>
           </li>
           <li>
-            <ModeButton mode={mode} />
+            <StyledModeButton mode={mode} />
           </li>
         </ul>
       </nav>

@@ -5,7 +5,6 @@ import { graphql } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import { animated, useSpring } from 'react-spring';
 import { SEO, StyledSideContents } from 'src/components';
 import Background from 'src/images/background.jpg';
 import { ColorModeContainer } from 'src/store';
@@ -51,12 +50,8 @@ const Post: React.FCX<{
   fluid: FluidObject;
   mode: boolean;
 }> = ({ title, body, date, tags, headings, fluid, mode, className }) => {
-  const props = useSpring({
-    backgroundColor: mode ? '#ffffff' : '#09090f',
-    color: mode ? '#09090f' : '#ffffff'
-  });
   return (
-    <animated.article className={className} style={props}>
+    <article className={className}>
       <section>
         <h1>{title}</h1>
         <div>
@@ -73,9 +68,9 @@ const Post: React.FCX<{
           <Img fluid={fluid} alt='eyecatch image' />
           <MDXRenderer>{body}</MDXRenderer>
         </section>
-        <StyledSideContents headings={headings} />
+        <StyledSideContents headings={headings} mode={mode} />
       </div>
-    </animated.article>
+    </article>
   );
 };
 
@@ -124,6 +119,7 @@ const StyledPost = styled(Post)`
 
   > div {
     ${baseStyle};
+    color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
     display: grid;
     grid-template-columns: 3fr 0.75fr;
   }

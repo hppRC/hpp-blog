@@ -12,6 +12,7 @@ type Props = {
     value: string;
     depth: number;
   }[];
+  mode: boolean;
 };
 
 const SideContents: React.FCX<Props> = ({ headings, className }) => {
@@ -48,11 +49,12 @@ export const StyledSideContents = styled(SideContents)`
       padding: 0.5rem 0.25rem;
       a {
         text-decoration: none;
-        color: #09090f90;
+        color: ${({ mode }) => (mode ? '#09090f90' : '#ffffff90')};
+
         transition: color 0.15s;
 
         :hover {
-          color: #09090f;
+          color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
         }
       }
     }
