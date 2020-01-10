@@ -1,5 +1,6 @@
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
+import { useDrag } from 'react-use-gesture';
 import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
@@ -10,6 +11,10 @@ type Props = {
 
 const ModeButton: React.FCX<Props> = ({ mode, className }) => {
   const { toggle } = ColorModeContainer.useContainer();
+  const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }));
+  const bind = useDrag(({ offset: [ox, oy] }) => {
+    set({ x: ox, y: oy });
+  });
 
   const props = useSpring({
     transform: mode ? 'translate3d(2rem, 0, 0)' : 'translate3d(-2rem, 0, 0)',
@@ -18,9 +23,14 @@ const ModeButton: React.FCX<Props> = ({ mode, className }) => {
   });
 
   return (
-    <button onClick={toggle} className={className}>
+    <animated.button
+      onClick={toggle}
+      className={className}
+      {...bind()}
+      style={{ x, y }}
+    >
       <animated.div style={props} />
-    </button>
+    </animated.button>
   );
 };
 

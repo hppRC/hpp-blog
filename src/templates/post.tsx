@@ -70,7 +70,10 @@ const Post: React.FCX<{
         </section>
         <StyledSideContents headings={headings} mode={mode} />
       </div>
-      <StyledTwitterShareButton title={title} id='twitter_share_button' />
+      <StyledTwitterShareButton
+        title={title}
+        customClass='twitter_share_button'
+      />
     </article>
   );
 };
@@ -129,11 +132,12 @@ const StyledPost = styled(Post)`
     }
   }
 
-  #twitter_share_button {
+  .twitter_share_button {
     position: fixed;
     bottom: 5rem;
     right: 5rem;
     outline: none;
+    z-index: 1000;
   }
 
   @media screen and (max-width: 1100px) {
