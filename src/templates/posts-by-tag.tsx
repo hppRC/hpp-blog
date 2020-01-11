@@ -8,8 +8,6 @@ import { Frontmatter } from 'types/utils';
 import styled from '@emotion/styled';
 
 const PostsByTag: React.FCX<any> = ({ className, posts, tagName }) => {
-  console.log(posts);
-  console.log(tagName);
   return (
     <main className={className}>
       <h1>{tagName}</h1>

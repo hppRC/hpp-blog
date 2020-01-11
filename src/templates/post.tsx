@@ -68,8 +68,10 @@ const Post: React.FCX<Props> = ({
           customClass='twitter_share_button'
         />
       </article>
-      <StyledPrevNext node={previous} />
-      <StyledPrevNext node={next} isNext />
+      <div>
+        <StyledPrevNext node={previous} mode={mode} />
+        <StyledPrevNext node={next} isNext mode={mode} />
+      </div>
     </main>
   );
 };
@@ -137,6 +139,10 @@ const StyledPost = styled(Post)`
       z-index: 1000;
     }
   }
+  > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 
   @media screen and (max-width: 1100px) {
   }
@@ -172,6 +178,9 @@ const StyledPost = styled(Post)`
         right: 1rem;
       }
     }
+    > div {
+      grid-template-columns: 1fr;
+    }
   }
   @media screen and (max-height: 430px) {
   }
@@ -180,34 +189,71 @@ const StyledPost = styled(Post)`
 const PrevNext: React.FCX<{
   node: { frontmatter: Frontmatter } | null;
   isNext?: boolean;
+  mode: boolean;
 }> = ({ node, isNext, className }) => {
   if (!node) return <section className={className}></section>;
 
   const { title, date, slug, tags, cover } = node.frontmatter;
   const { fluid } = cover.childImageSharp;
   return (
-    <section className={`${className} ${isNext ? 'isNext' : 'isPrev'}`}>
-      <Link to={slug}>
-        <h2>{title}</h2>
-        <h3>{date}</h3>
-        <ul>
-          {tags.map((tag, i) => (
-            <li key={i}>{tag}</li>
-          ))}
-        </ul>
-        <Img fluid={fluid} />
+    <section className={`${className}`}>
+      <Link to={`/posts/${slug}`}>
+        <div className={`${isNext ? 'isNext' : 'isPrev'}`}>
+          <Img fluid={fluid} />
+          <div>
+            <h2>{title}</h2>
+            <h3>{date}</h3>
+            <ul>
+              {tags.map((tag, i) => (
+                <li key={i}>{tag}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </Link>
     </section>
   );
 };
 
 const StyledPrevNext = styled(PrevNext)`
-  width: 50%;
+  width: 100%;
   padding: 5rem;
+  border: 1px solid #09090f;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    div {
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+      div {
+        color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+        transition: color 0.3s;
+      }
+      img {
+        width: 10rem;
+      }
+      &.isNext {
+        flex-direction: row-reverse;
+      }
+      &.isPrev {
+      }
+    }
+  }
+  @media screen and (max-width: 1100px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-height: 430px) {
+  }
 `;
 
 export default ({ data, pageContext }: PostProps) => {
-  console.log(pageContext);
   const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;
