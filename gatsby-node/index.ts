@@ -1,71 +1,125 @@
 import { GatsbyNode } from 'gatsby';
+import { fmImagesToRelative } from 'gatsby-remark-relative-images';
+import { createFilePath } from 'gatsby-source-filesystem';
 import path from 'path';
+import { Frontmatter, PostPageContext, Result } from 'types/utils';
 
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
-
-type Result = {
-  allMdx: {
-    edges: {
-      previous: {
-        frontmatter: {
-          slug: string;
-        };
-      } | null;
-      next: {
-        frontmatter: {
-          slug: string;
-        };
-      } | null;
-      node: {
-        frontmatter: {
-          slug: string;
-        };
-      };
-    }[];
-  };
-};
+const query = `
+query {
+  allMdx(sort: { order: ASC, fields: [frontmatter___date] }) {
+    edges {
+      previous {
+        frontmatter {
+          slug
+          title
+          date(formatString: "YYYY-MM-DD")
+          tags
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 1000, quality: 90) {
+                tracedSVG
+                base64
+                sizes
+                srcSet
+                src
+                srcSetWebp
+                srcWebp
+                aspectRatio
+              }
+            }
+          }
+        }
+      }
+      next {
+        frontmatter {
+          slug
+          title
+          date(formatString: "YYYY-MM-DD")
+          tags
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 1000, quality: 90) {
+                tracedSVG
+                base64
+                sizes
+                srcSet
+                src
+                srcSetWebp
+                srcWebp
+                aspectRatio
+              }
+            }
+          }
+        }
+      }
+      node {
+        frontmatter {
+          slug
+          title
+          date(formatString: "YYYY-MM-DD")
+          tags
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 1000, quality: 90) {
+                tracedSVG
+                base64
+                sizes
+                srcSet
+                src
+                srcSetWebp
+                srcWebp
+                aspectRatio
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
 
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions: { createPage }
 }) => {
   const postTemplate = path.resolve('src/templates/post.tsx');
+  const postByTagTemplate = path.resolve('src/templates/posts-by-tag.tsx');
 
-  const result = await graphql<Result>(`
-    query {
-      allMdx(sort: { order: ASC, fields: [frontmatter___date] }) {
-        edges {
-          previous {
-            frontmatter {
-              slug
-            }
-          }
-          next {
-            frontmatter {
-              slug
-            }
-          }
-          node {
-            frontmatter {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `);
+  const result = await graphql<Result>(query);
 
   const edges = result?.data?.allMdx.edges;
+  const postsByTag: { [key: string]: { frontmatter: Frontmatter }[] } = {}; //タグごとの投稿を格納する
 
   edges?.forEach(({ previous, next, node }) => {
-    createPage({
+    node.frontmatter.tags?.forEach(tag => {
+      if (!postsByTag[tag]) {
+        postsByTag[tag] = [];
+      }
+      postsByTag[tag].push(node);
+    });
+
+    createPage<PostPageContext>({
       path: `posts/${node.frontmatter.slug}`,
       component: postTemplate,
       context: {
-        previous: previous?.frontmatter.slug,
-        next: next?.frontmatter.slug,
+        previous,
+        next,
         slug: node.frontmatter.slug
+      }
+    });
+  });
+
+  const tags = Object.keys(postsByTag);
+
+  tags.forEach(tagName => {
+    const posts = postsByTag[tagName];
+    createPage({
+      path: `/tags/${tagName}`,
+      component: postByTagTemplate,
+      context: {
+        posts,
+        tagName
       }
     });
   });

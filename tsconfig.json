@@ -19,7 +19,7 @@
     "strictNullChecks": true,
     "noImplicitReturns": true,
     "baseUrl": ".",
-    "paths": { "*": ["types/*"], "src/*": ["src/*"] },
+    "paths": { "*": ["types/*"], "src/*": ["src/*"], "types/*": ["types/*"] },
     "typeRoots": ["types", "node_modules/@types"]
   },
   "exclude": ["node_modules", "public", ".cache"]
