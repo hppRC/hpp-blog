@@ -69,6 +69,7 @@
     "react-share": "^4.0.1",
     "react-spring": "^9.0.0-beta.34",
     "react-use-gesture": "^7.0.0-beta.9",
+    "ts-node": "^8.6.1",
     "typescript": "^3.7.2",
     "unstated-next": "^1.1.0",
     "webpack": "^4.41.2"

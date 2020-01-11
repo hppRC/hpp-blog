@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TwitterIcon, TwitterShareButton as TwiButton } from 'react-share';
 import { animated, config, useSpring } from 'react-spring';
-import { useDrag } from 'react-use-gesture';
 
 import styled from '@emotion/styled';
 
@@ -21,11 +20,6 @@ const TwitterShareButton: React.FCX<Props> = ({
     transform: enter ? 'scale(1.2)' : 'scale(1.0)'
   });
 
-  const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }));
-  const bind = useDrag(({ offset: [ox, oy] }) => {
-    set({ x: ox, y: oy });
-  });
-
   const AnimatedTwiButton = animated(TwiButton);
   return (
     <AnimatedTwiButton
@@ -39,10 +33,9 @@ const TwitterShareButton: React.FCX<Props> = ({
       onMouseLeave={_ => {
         setEnter(false);
       }}
-      style={{ ...props, x, y }}
-      {...bind()}
+      style={props}
     >
-      <TwitterIcon round crossOrigin='true' />
+      <TwitterIcon round crossOrigin='' />
     </AnimatedTwiButton>
   );
 };
