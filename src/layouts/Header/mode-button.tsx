@@ -19,6 +19,7 @@ const ModeButton: React.FCX<Props> = ({ mode, className }) => {
 
   return (
     <button onClick={toggle} className={className}>
+      <span aria-hidden='true'>dark mode button</span>
       <animated.div style={props} />
     </button>
   );
@@ -50,6 +51,9 @@ export const StyledModeButton = styled(ModeButton)`
     width: 4rem;
     height: 4rem;
     border-radius: 2rem;
+  }
+  span {
+    display: none;
   }
 `;
 

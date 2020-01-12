@@ -145,14 +145,14 @@ module.exports = {
           {
             serialize: ({ query: { site, allMdx } }) => {
               const { siteUrl } = site.siteMetadata;
-              return allMdx.nodes.map(({ excerpt, html, frontmatter }) => {
+              return allMdx.nodes.map(({ excerpt, body, frontmatter }) => {
                 const { slug, date } = frontmatter;
                 return Object.assign({}, frontmatter, {
                   description: excerpt,
                   date: date,
                   url: `${siteUrl}/posts/${slug}`,
                   guid: `${siteUrl}/posts/${slug}`,
-                  custom_elements: [{ 'content:encoded': html }]
+                  custom_elements: [{ 'content:encoded': body }]
                 });
               });
             },
@@ -161,7 +161,7 @@ module.exports = {
                 allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
                   nodes {
                     excerpt
-                    html
+                    body
                     frontmatter {
                       title
                       date

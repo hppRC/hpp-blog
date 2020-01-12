@@ -49,12 +49,16 @@ const Post: React.FCX<Props> = ({
           <Img fluid={background} />
           <div>
             <h1>{title}</h1>
-            <h2>{date}</h2>
-            <ul>
-              {tags.map((tag, i) => (
-                <li key={i}>{tag}</li>
-              ))}
-            </ul>
+            <div>
+              <p>{date}</p>
+              <ul>
+                {tags.map((tag, i) => (
+                  <li key={i}>
+                    <Link to={`/tags/${tag}`}>{tag}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
         <div>
@@ -97,6 +101,7 @@ const StyledPost = styled(Post)`
         top: 0;
         left: 0;
         display: flex;
+        flex-direction: column;
         z-index: 1;
         justify-content: center;
         align-items: center;
@@ -108,9 +113,37 @@ const StyledPost = styled(Post)`
           font-size: 5rem;
         }
 
-        ul {
-          list-style: none;
+        div {
           display: flex;
+          padding: 1rem 0;
+          p {
+            padding: 0.3rem 1.5rem;
+          }
+
+          ul {
+            list-style: none;
+            display: flex;
+            li {
+              padding: 0 0.5rem;
+              a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: 0.3rem 1rem;
+
+                color: #ffffff;
+                border: 1px solid #ffffff;
+                border-radius: 3px;
+                text-decoration: none;
+                transition: color, background-color 0.15s;
+
+                :hover {
+                  color: #09090f;
+                  background-color: #ffffff;
+                }
+              }
+            }
+          }
         }
       }
     }

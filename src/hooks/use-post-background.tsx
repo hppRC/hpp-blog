@@ -15,7 +15,7 @@ type Props = {
 export const usePostBackground = () => {
   const data = useStaticQuery<Props>(graphql`
     query {
-      file(relativePath: { eq: "background.jpg" }) {
+      file(relativePath: { eq: "background.webp" }) {
         childImageSharp {
           fluid(maxWidth: 1400, quality: 90) {
             ...GatsbyImageSharpFluid
