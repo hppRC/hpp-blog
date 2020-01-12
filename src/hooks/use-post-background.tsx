@@ -12,9 +12,7 @@ type Props = {
 /**
  * use site's default banner's fluid object
  */
-export const useSiteBanner = () => {
-  //relativePath: path from `image`
-  //it is configured in gatsby-config.js of `gatsby-source-filesystem`
+export const usePostBackground = () => {
   const data = useStaticQuery<Props>(graphql`
     query {
       file(relativePath: { eq: "background.jpg" }) {
@@ -30,4 +28,4 @@ export const useSiteBanner = () => {
   return data.file.childImageSharp.fluid;
 };
 
-export default useSiteBanner;
+export default usePostBackground;

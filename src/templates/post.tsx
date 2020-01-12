@@ -7,7 +7,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import { SEO, StyledSideContents, StyledTwitterShareButton } from 'src/components';
-import Background from 'src/images/background.jpg';
+import { usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { baseStyle, postStyle } from 'src/styles';
 import { Frontmatter, PostProps } from 'types/utils';
@@ -41,12 +41,14 @@ const Post: React.FCX<Props> = ({
   next,
   className
 }) => {
+  const background = usePostBackground();
   return (
     <main className={className}>
       <article>
         <section>
-          <h1>{title}</h1>
+          <Img fluid={background} />
           <div>
+            <h1>{title}</h1>
             <h2>{date}</h2>
             <ul>
               {tags.map((tag, i) => (
@@ -85,21 +87,27 @@ const StyledPost = styled(Post)`
       flex-direction: column;
       width: 100vw;
       height: 75vh;
-      background: center / cover no-repeat url(${Background});
-      background-attachment: fixed;
+
       /* staf roll */
       /* <a href="https://jp.freepik.com/free-photos-vectors/background">Freepik - jp.freepik.com によって作成された background ベクトル</a> */
 
       color: #fff;
 
-      h1 {
-        z-index: 1;
-        font-size: 5rem;
-      }
-
-      div {
+      > div {
+        position: absolute;
+        top: 0;
+        left: 0;
         display: flex;
         z-index: 1;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        h1 {
+          z-index: 1;
+          font-size: 5rem;
+        }
 
         ul {
           list-style: none;
@@ -107,15 +115,12 @@ const StyledPost = styled(Post)`
         }
       }
 
-      ::after {
-        content: '';
-        /* 背景画像に被せる色の指定 */
-        background-color: #09090f00;
+      .gatsby-image-wrapper {
         position: absolute;
-        left: 0;
-        right: 0;
         top: 0;
-        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
 
