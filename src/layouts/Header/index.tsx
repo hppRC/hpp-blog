@@ -41,6 +41,7 @@ export const StyledHeader = styled(Header)`
     a {
       text-decoration: none;
       h1 {
+        transition: color 0.3s;
         color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
       }
     }

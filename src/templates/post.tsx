@@ -9,7 +9,7 @@ import { animated, config, useSpring } from 'react-spring';
 import { SEO, StyledSideContents, StyledTwitterShareButton } from 'src/components';
 import Background from 'src/images/background.jpg';
 import { ColorModeContainer } from 'src/store';
-import { baseStyle } from 'src/styles';
+import { baseStyle, postStyle } from 'src/styles';
 import { Frontmatter, PostProps } from 'types/utils';
 
 import styled from '@emotion/styled';
@@ -120,12 +120,15 @@ const StyledPost = styled(Post)`
     }
 
     > div:nth-of-type(1) {
+      max-width: 1400px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 3fr 0.75fr;
       background-color: transparent;
 
       section {
         ${baseStyle};
+        ${postStyle};
         transition: color 0.3s;
       }
     }
@@ -138,7 +141,10 @@ const StyledPost = styled(Post)`
       z-index: 1000;
     }
   }
+
   > div {
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 4rem;
@@ -162,15 +168,6 @@ const StyledPost = styled(Post)`
       > div:nth-of-type(1) {
         section {
           width: 100vw;
-          h1 {
-            padding: 3rem 0 1rem 0;
-          }
-          h2 {
-            padding: 2.5rem 0 1rem 0;
-          }
-          h3 {
-            padding: 1.5rem 0 1rem 0;
-          }
         }
       }
       #twitter_share_button {
@@ -194,7 +191,7 @@ const PrevNext: React.FCX<{
   if (!node) return <section className={className}></section>;
 
   const { frontmatter, excerpt } = node;
-  const { title, date, slug, tags, cover } = frontmatter;
+  const { title, date, slug, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;
 
   const [enter, setEnter] = useState(false);
@@ -220,14 +217,9 @@ const PrevNext: React.FCX<{
           <Img fluid={fluid} />
           <div>
             <h2>{title}</h2>
-            <h3>{date}</h3>
-            <ul>
-              {tags.map((tag, i) => (
-                <li key={i}>{tag}</li>
-              ))}
-            </ul>
+            <p>{date}</p>
+            <p>{excerpt}</p>
           </div>
-          <p>{excerpt}</p>
         </animated.div>
       </Link>
     </section>
@@ -245,10 +237,12 @@ const StyledPrevNext = styled(PrevNext)`
 
     > div {
       display: flex;
+
       width: 100%;
       height: 100%;
       padding: 2rem;
       box-shadow: 0px 3px 10px 0px #09090f30;
+      transition: background-color 0.3s;
       background-color: ${({ mode }) => (mode ? 'transparent' : '#13131f')};
       border-radius: 3px;
 
@@ -266,9 +260,11 @@ const StyledPrevNext = styled(PrevNext)`
         ul {
           list-style: none;
         }
-      }
-      p {
-        padding: 2rem 0;
+        p {
+          padding: 1rem 0;
+          color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+          transition: color 0.3s;
+        }
       }
 
       &.isNext {

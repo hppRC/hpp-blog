@@ -46,7 +46,13 @@ export const StyledSideContents = styled(SideContents)`
     list-style: none;
 
     li {
-      padding: 0.5rem 0.25rem;
+      padding: 0.25rem;
+      margin: 0.25rem 0;
+      transition: background-color 0.15s;
+      :hover {
+        background-color: ${({ mode }) => (mode ? '#09090f10' : '#ffffff10')};
+      }
+
       a {
         text-decoration: none;
         color: ${({ mode }) => (mode ? '#09090f90' : '#ffffff90')};
@@ -54,7 +60,7 @@ export const StyledSideContents = styled(SideContents)`
         transition: color 0.15s;
 
         :hover {
-          color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+          color: ${({ mode }) => (mode ? '#09090fc0' : '#ffffffc0')};
         }
       }
     }
