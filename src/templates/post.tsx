@@ -85,13 +85,12 @@ const StyledPost = styled(Post)`
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      color: #fff;
       width: 100vw;
       height: 75vh;
 
       /* staf roll */
       /* <a href="https://jp.freepik.com/free-photos-vectors/background">Freepik - jp.freepik.com によって作成された background ベクトル</a> */
-
-      color: #fff;
 
       > div {
         position: absolute;
@@ -105,7 +104,7 @@ const StyledPost = styled(Post)`
         height: 100%;
 
         h1 {
-          z-index: 1;
+          z-index: 0;
           font-size: 5rem;
         }
 
@@ -113,14 +112,6 @@ const StyledPost = styled(Post)`
           list-style: none;
           display: flex;
         }
-      }
-
-      .gatsby-image-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
       }
     }
 
@@ -203,7 +194,14 @@ const PrevNext: React.FCX<{
 
   const props = useSpring({
     config: config.wobbly,
-    transform: enter ? 'translate3d(0, -1rem, 0)' : 'translate3d(0, 0rem, 0)'
+    transform: enter ? 'scale(1.05)' : 'scale(1.0)'
+  });
+
+  const decoProps = useSpring({
+    config: config.wobbly,
+    transform: enter
+      ? 'translate3d(-10rem,-2rem,0)'
+      : 'translate3d(2rem,-10rem,0)'
   });
 
   return (
@@ -225,6 +223,9 @@ const PrevNext: React.FCX<{
             <p>{date}</p>
             <p>{excerpt}</p>
           </div>
+          <animated.div className='deco' style={decoProps}>
+            🌝
+          </animated.div>
         </animated.div>
       </Link>
     </section>
@@ -232,9 +233,12 @@ const PrevNext: React.FCX<{
 };
 
 const StyledPrevNext = styled(PrevNext)`
+  position: relative;
   width: 100%;
+
   padding: 5rem;
   a {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%;
@@ -242,6 +246,7 @@ const StyledPrevNext = styled(PrevNext)`
 
     > div {
       display: flex;
+      overflow: hidden;
 
       width: 100%;
       height: 100%;
@@ -270,12 +275,22 @@ const StyledPrevNext = styled(PrevNext)`
           color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
           transition: color 0.3s;
         }
+        will-change: transform;
       }
 
       &.isNext {
         flex-direction: row-reverse;
       }
       &.isPrev {
+      }
+
+      .deco {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        font-size: 10rem;
+        will-change: transform;
       }
     }
   }
@@ -295,7 +310,7 @@ export default ({ data, pageContext }: PostProps) => {
   const { fluid } = cover.childImageSharp;
   const { slug, previous, next } = pageContext;
   const { mode } = ColorModeContainer.useContainer();
-  console.log(next);
+
   return (
     <>
       <SEO

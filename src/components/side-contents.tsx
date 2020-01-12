@@ -17,13 +17,14 @@ type Props = {
 
 const SideContents: React.FCX<Props> = ({ headings, className }) => {
   slugger.reset();
+
   return (
     <Location>
       {({ location }) => (
         <section className={className}>
           <ul>
             {headings.map(({ value, depth }, i) => (
-              <li key={i} style={{ paddingLeft: `${(depth - 2) * 1.2}rem` }}>
+              <li key={i} style={{ paddingLeft: `${depth * 1.1}rem` }}>
                 <Link to={`${location.pathname}#${slugger.slug(value)}`}>
                   {value}
                 </Link>
@@ -46,9 +47,10 @@ export const StyledSideContents = styled(SideContents)`
     list-style: none;
 
     li {
-      padding: 0.25rem;
-      margin: 0.25rem 0;
+      padding: 0.5rem;
       transition: background-color 0.15s;
+      border-radius: 3px;
+
       :hover {
         background-color: ${({ mode }) => (mode ? '#09090f10' : '#ffffff10')};
       }

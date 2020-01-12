@@ -19,8 +19,8 @@ const TwitterShareButton: React.FCX<Props> = ({
     config: config.wobbly,
     transform: enter ? 'scale(1.2)' : 'scale(1.0)'
   });
-
   const AnimatedTwiButton = animated(TwiButton);
+
   return (
     <AnimatedTwiButton
       url={`https://blog.hpprc.com/posts/${title}`}
