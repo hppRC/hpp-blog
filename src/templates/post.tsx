@@ -4,7 +4,8 @@ import 'katex/dist/katex.min.css';
 import { graphql, Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import React from 'react';
+import React, { useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 import { SEO, StyledSideContents, StyledTwitterShareButton } from 'src/components';
 import Background from 'src/images/background.jpg';
 import { ColorModeContainer } from 'src/store';
@@ -24,8 +25,8 @@ type Props = {
   }[];
   fluid: FluidObject;
   mode: boolean;
-  previous: { frontmatter: Frontmatter } | null;
-  next: { frontmatter: Frontmatter } | null;
+  previous: { frontmatter: Frontmatter; excerpt: string } | null;
+  next: { frontmatter: Frontmatter; excerpt: string } | null;
 };
 
 const Post: React.FCX<Props> = ({
@@ -40,8 +41,6 @@ const Post: React.FCX<Props> = ({
   next,
   className
 }) => {
-  console.log(previous);
-  console.log(next);
   return (
     <main className={className}>
       <article>
@@ -142,6 +141,7 @@ const StyledPost = styled(Post)`
   > div {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 4rem;
   }
 
   @media screen and (max-width: 1100px) {
@@ -187,18 +187,36 @@ const StyledPost = styled(Post)`
 `;
 
 const PrevNext: React.FCX<{
-  node: { frontmatter: Frontmatter } | null;
+  node: { frontmatter: Frontmatter; excerpt: string } | null;
   isNext?: boolean;
   mode: boolean;
 }> = ({ node, isNext, className }) => {
   if (!node) return <section className={className}></section>;
 
-  const { title, date, slug, tags, cover } = node.frontmatter;
+  const { frontmatter, excerpt } = node;
+  const { title, date, slug, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;
+
+  const [enter, setEnter] = useState(false);
+
+  const props = useSpring({
+    config: config.wobbly,
+    transform: enter ? 'translate3d(0, -1rem, 0)' : 'translate3d(0, 0rem, 0)'
+  });
+
   return (
-    <section className={`${className}`}>
+    <section className={className}>
       <Link to={`/posts/${slug}`}>
-        <div className={`${isNext ? 'isNext' : 'isPrev'}`}>
+        <animated.div
+          className={`${isNext ? 'isNext' : 'isPrev'}`}
+          style={props}
+          onMouseEnter={(e: any) => {
+            setEnter(true);
+          }}
+          onMouseLeave={(e: any) => {
+            setEnter(false);
+          }}
+        >
           <Img fluid={fluid} />
           <div>
             <h2>{title}</h2>
@@ -209,7 +227,8 @@ const PrevNext: React.FCX<{
               ))}
             </ul>
           </div>
-        </div>
+          <p>{excerpt}</p>
+        </animated.div>
       </Link>
     </section>
   );
@@ -218,24 +237,40 @@ const PrevNext: React.FCX<{
 const StyledPrevNext = styled(PrevNext)`
   width: 100%;
   padding: 5rem;
-  border: 1px solid #09090f;
   a {
     display: block;
     width: 100%;
     height: 100%;
     text-decoration: none;
-    div {
+
+    > div {
       display: flex;
       width: 100%;
       height: 100%;
+      padding: 2rem;
+      box-shadow: 0px 3px 10px 0px #09090f30;
+      background-color: ${({ mode }) => (mode ? 'transparent' : '#13131f')};
+      border-radius: 3px;
+
+      .gatsby-image-wrapper {
+        width: 100%;
+      }
 
       div {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
         color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
         transition: color 0.3s;
+
+        ul {
+          list-style: none;
+        }
       }
-      img {
-        width: 10rem;
+      p {
+        padding: 2rem 0;
       }
+
       &.isNext {
         flex-direction: row-reverse;
       }
@@ -259,6 +294,7 @@ export default ({ data, pageContext }: PostProps) => {
   const { fluid } = cover.childImageSharp;
   const { slug, previous, next } = pageContext;
   const { mode } = ColorModeContainer.useContainer();
+  console.log(next);
   return (
     <>
       <SEO

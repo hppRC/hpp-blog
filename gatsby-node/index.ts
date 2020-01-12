@@ -4,11 +4,13 @@ import { createFilePath } from 'gatsby-source-filesystem';
 import path from 'path';
 import { Frontmatter, PostPageContext, Result } from 'types/utils';
 
+//you can't use QraphQL query fragments to get fluid object in gatsby-node.
 const query = `
 query {
   allMdx(sort: { order: ASC, fields: [frontmatter___date] }) {
     edges {
       previous {
+        excerpt
         frontmatter {
           slug
           title
@@ -31,6 +33,7 @@ query {
         }
       }
       next {
+        excerpt
         frontmatter {
           slug
           title
@@ -53,6 +56,7 @@ query {
         }
       }
       node {
+        excerpt
         frontmatter {
           slug
           title

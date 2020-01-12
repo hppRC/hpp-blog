@@ -6,7 +6,11 @@ import styled from '@emotion/styled';
 
 import ModeButton from './mode-button';
 
-const Header: React.FCX<{ mode: boolean }> = ({ className }) => {
+type Props = {
+  mode: boolean;
+};
+
+const Header: React.FCX<Props> = ({ className }) => {
   return (
     <header className={className}>
       <div>
@@ -37,7 +41,7 @@ export const StyledHeader = styled(Header)`
     a {
       text-decoration: none;
       h1 {
-        color: #ffffff;
+        color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
       }
     }
   }
@@ -46,6 +50,7 @@ export const StyledHeader = styled(Header)`
     padding: 1.5rem;
   }
   z-index: 1000;
+
   @media screen and (max-width: 1100px) {
   }
   @media screen and (max-width: 768px) {

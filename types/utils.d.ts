@@ -1,8 +1,8 @@
 import { FluidObject } from 'gatsby-image';
 
 export type Frontmatter = {
-  title: string;
   slug: string;
+  title: string;
   date: string;
   tags: string[];
   cover: {
@@ -17,20 +17,23 @@ export type Result = {
     edges: {
       previous: {
         frontmatter: Frontmatter;
+        excerpt: string;
       } | null;
       next: {
         frontmatter: Frontmatter;
+        excerpt: string;
       } | null;
       node: {
         frontmatter: Frontmatter;
+        excerpt: string;
       };
     }[];
   };
 };
 
 export type PostPageContext = {
-  previous: { frontmatter: Frontmatter } | null;
-  next: { frontmatter: Frontmatter } | null;
+  previous: { frontmatter: Frontmatter; excerpt: string } | null;
+  next: { frontmatter: Frontmatter; excerpt: string } | null;
   slug: string;
 };
 
