@@ -20,12 +20,14 @@ const Header: React.FCX<Props> = ({ className }) => {
   const bind = useScroll(
     ({ xy: [, y] }) =>
       set({
-        translate: `translate3d(-${Math.min(y * 0.02, 15.5)}rem, 0, 0)`,
+        translate: `translate3d(-${Math.min(y * 0.02, 15)}rem, 0, 0)`,
         scale: `scale(${Math.min(2, 1 + y * 0.001)})`
       }),
-    { domTarget: window }
+    { domTarget: typeof window !== 'undefined' ? window : undefined }
   );
-  useEffect(bind, [bind]);
+  useEffect(() => {
+    bind();
+  }, [bind]);
   return (
     <header className={className}>
       <animated.div style={{ transform: translate }}>
@@ -65,7 +67,7 @@ export const StyledHeader = styled(Header)`
         span {
           display: inline-block;
           width: 2rem;
-          margin-left: 1rem;
+
           padding: 0.3rem 0.5rem;
         }
       }
