@@ -38,6 +38,12 @@ export const GlobalCSS = () => {
             font-weight: bold;
           }
 
+          ::-webkit-scrollbar {
+          }
+
+          ::-webkit-scrollbar-thumb {
+          }
+
           body {
             font-size: 1.6em;
             overflow-x: hidden;

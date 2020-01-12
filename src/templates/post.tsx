@@ -93,6 +93,17 @@ const StyledPost = styled(Post)`
       width: 100vw;
       height: 75vh;
 
+      .gatsby-image-wrapper {
+        width: 100%;
+        img,
+        picture {
+          position: absolute;
+          top: -25vh;
+          width: 100%;
+          height: 150vh;
+        }
+      }
+
       /* staf roll */
       /* <a href="https://jp.freepik.com/free-photos-vectors/background">Freepik - jp.freepik.com によって作成された background ベクトル</a> */
 
@@ -110,7 +121,7 @@ const StyledPost = styled(Post)`
 
         h1 {
           z-index: 0;
-          font-size: 5rem;
+          font-size: 7.5rem;
         }
 
         div {
@@ -291,6 +302,10 @@ const StyledPrevNext = styled(PrevNext)`
 
       .gatsby-image-wrapper {
         width: 100%;
+        img,
+        picture {
+          border-radius: 3px;
+        }
       }
 
       div {

@@ -1,5 +1,7 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { animated, useSpring } from 'react-spring';
+import { useScroll } from 'react-use-gesture';
 import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
@@ -11,13 +13,29 @@ type Props = {
 };
 
 const Header: React.FCX<Props> = ({ className }) => {
+  const [{ translate, scale }, set] = useSpring(() => ({
+    translate: `translate3d(0rem, 0, 0)`,
+    scale: 'scale(1.0)'
+  }));
+  const bind = useScroll(
+    ({ xy: [, y] }) =>
+      set({
+        translate: `translate3d(-${Math.min(y * 0.02, 15.5)}rem, 0, 0)`,
+        scale: `scale(${Math.min(2, 1 + y * 0.001)})`
+      }),
+    { domTarget: window }
+  );
+  useEffect(bind, [bind]);
   return (
     <header className={className}>
-      <div>
+      <animated.div style={{ transform: translate }}>
         <Link to='/'>
-          <h1>hpp blog🌝</h1>
+          <h1>
+            hpp blog
+            <animated.span style={{ transform: scale }}>🌝</animated.span>
+          </h1>
         </Link>
-      </div>
+      </animated.div>
       <nav>
         <ModeButton />
       </nav>
@@ -38,11 +56,18 @@ export const StyledHeader = styled(Header)`
   div {
     padding: 1rem;
 
+    will-change: transform;
     a {
       text-decoration: none;
       h1 {
-        transition: color 0.3s;
-        color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+        color: #ffffff;
+
+        span {
+          display: inline-block;
+          width: 2rem;
+          margin-left: 1rem;
+          padding: 0.3rem 0.5rem;
+        }
       }
     }
   }
@@ -57,6 +82,17 @@ export const StyledHeader = styled(Header)`
   @media screen and (max-width: 768px) {
     nav {
       padding: 1rem 0.5rem;
+    }
+
+    div {
+      a {
+        h1 {
+          font-size: 3rem;
+          span {
+            padding: 0.1rem 0.8rem;
+          }
+        }
+      }
     }
   }
   @media screen and (max-width: 480px) {

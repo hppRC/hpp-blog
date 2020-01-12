@@ -9,7 +9,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx,tsx}",
-    "start": "yarn develop",
+    "start": "yarn clean && yarn develop",
     "serve": "gatsby serve",
     "type-check": "tsc --noEmit",
     "clean": "gatsby clean"
