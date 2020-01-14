@@ -7,3 +7,4 @@ export { default as Form } from './form';
 export { default as SideContents } from './side-contents';
 export { default as TwitterShareButton } from './twitter-share-button';
 export { default as StartAnimation } from './start-animation';
+export { default as MoonDeco } from './moon-deco';

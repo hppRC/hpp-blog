@@ -1,13 +1,18 @@
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
-import React from 'react';
+import Img, { FluidObject } from 'gatsby-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 import { SEO } from 'src/components';
 import { useAllPosts, usePostBackground } from 'src/hooks';
+import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
-const Posts: React.FCX = ({ className }) => {
+const items = ['🌝'];
+
+const Posts: React.FCX<{ mode: boolean }> = ({ mode, className }) => {
   const background = usePostBackground();
+
   return (
     <main className={className}>
       <Img fluid={background} />
@@ -19,19 +24,16 @@ const Posts: React.FCX = ({ className }) => {
           const { title, date, tags, slug, cover } = frontmatter;
           const { fluid } = cover.childImageSharp;
           return (
-            <article key={i}>
-              <Img fluid={fluid} alt='eyecatch' backgroundColor={'#fff'} />
-              <Link to={`/posts/${slug}`}>
-                <h2>{title}</h2>
-              </Link>
-              <p>{date}</p>
-              <p>{excerpt}</p>
-              <ul>
-                {tags.map((tag, j) => (
-                  <li key={j}>{tag}</li>
-                ))}
-              </ul>
-            </article>
+            <StyledEachArticle
+              key={i}
+              title={title}
+              date={date}
+              tags={tags}
+              slug={slug}
+              fluid={fluid}
+              excerpt={excerpt}
+              mode={mode}
+            />
           );
         })}
       </section>
@@ -54,6 +56,7 @@ const StyledPosts = styled(Posts)`
       /* transform: rotate(90deg); */
     }
   }
+
   section:nth-of-type(1) {
     position: absolute;
     top: 0;
@@ -74,13 +77,157 @@ const StyledPosts = styled(Posts)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
-    padding: 5rem 5vw;
+    padding: 5rem;
+  }
+  @media screen and (max-width: 1100px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    section:nth-of-type(2) {
+      grid-template-columns: 1fr;
+      grid-gap: 4rem;
+      padding: 3rem 1rem;
+    }
+  }
+  @media screen and (max-height: 430px) {
   }
 `;
 
-export default (props: any) => (
-  <>
-    <SEO title='Posts' pathname={props.path} />
-    <StyledPosts />
-  </>
-);
+type EachArticleProps = {
+  key: number;
+  slug: string;
+  fluid: FluidObject;
+  title: string;
+  date: string;
+  tags: string[];
+  excerpt: string;
+  mode: boolean;
+};
+
+const EachArticle: React.FCX<EachArticleProps> = ({
+  key,
+  slug,
+  fluid,
+  title,
+  date,
+  tags,
+  excerpt,
+  className,
+  mode
+}) => {
+  const [enter, setEnter] = useState(false);
+  const props = useSpring({
+    config: config.wobbly,
+    transform: enter
+      ? 'translate3d(-10rem,0rem,0)'
+      : 'translate3d(2rem,-10rem,0)'
+  });
+
+  const ref = useRef('');
+
+  useEffect(() => {
+    ref.current = items[Math.floor(Math.random() * items.length)];
+  }, [mode]);
+
+  return (
+    <article
+      key={key}
+      className={className}
+      onMouseEnter={(e: any) => {
+        setEnter(true);
+      }}
+      onMouseLeave={(e: any) => {
+        setEnter(false);
+      }}
+    >
+      <Link to={`/posts/${slug}`}>
+        <Img fluid={fluid} alt='eyecatch' backgroundColor='#fff' />
+        <div>
+          <h2>{title}</h2>
+          <p>{date}</p>
+          <ul>
+            {tags.map((tag, j) => (
+              <li key={j}>{tag}</li>
+            ))}
+          </ul>
+          <p>{excerpt}</p>
+        </div>
+      </Link>
+      <animated.div style={props} className='deco'>
+        {ref.current}
+      </animated.div>
+    </article>
+  );
+};
+
+const StyledEachArticle = styled(EachArticle)`
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.15s;
+  box-shadow: 0px 3px 10px 0px #09090f30;
+  background-color: ${({ mode }) => (mode ? 'transparent' : '#13131f')};
+  a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    color: ${({ mode }) => (mode ? '#09090ff0' : '#fffffff0')};
+    text-decoration: none;
+
+    img,
+    picture {
+      border-radius: 3px;
+    }
+
+    div {
+      padding: 1rem;
+      ul {
+        display: flex;
+        list-style: none;
+        padding: 1rem 0;
+
+        li {
+          margin-right: 0.5rem;
+          padding: 0.2rem 0.3rem;
+          border: 0.5px solid ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+          border-radius: 3px;
+          word-break: keep-all;
+        }
+      }
+
+      p {
+        padding: 0.5rem 0;
+      }
+    }
+  }
+
+  .deco {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    font-size: 8rem;
+    will-change: transform;
+  }
+
+  @media screen and (max-width: 1100px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  }
+  @media screen and (max-height: 430px) {
+  }
+`;
+
+export default (props: any) => {
+  const { mode } = ColorModeContainer.useContainer();
+  return (
+    <>
+      <SEO title='Posts' pathname={props.path} />
+      <StyledPosts mode={mode} />
+    </>
+  );
+};
