@@ -2,34 +2,19 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'katex/dist/katex.min.css';
 
 import { graphql, Link } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import Img from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
-import { SEO, StyledSideContents, StyledTwitterShareButton } from 'src/components';
+import { SEO, SideContents, TwitterShareButton } from 'src/components';
 import { usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { baseStyle, postStyle } from 'src/styles';
-import { Frontmatter, PostProps } from 'types/utils';
+import { Frontmatter, PostDefaultProps, PostProps } from 'types/utils';
 
 import styled from '@emotion/styled';
 
-type Props = {
-  title: string;
-  body: string;
-  date: string;
-  tags: string[];
-  headings: {
-    value: string;
-    depth: number;
-  }[];
-  fluid: FluidObject;
-  mode: boolean;
-  previous: { frontmatter: Frontmatter; excerpt: string } | null;
-  next: { frontmatter: Frontmatter; excerpt: string } | null;
-};
-
-const Post: React.FCX<Props> = ({
+const Post: React.FCX<PostProps> = ({
   title,
   body,
   date,
@@ -66,12 +51,9 @@ const Post: React.FCX<Props> = ({
             <Img fluid={fluid} alt='eyecatch image' />
             <MDXRenderer>{body}</MDXRenderer>
           </section>
-          <StyledSideContents headings={headings} mode={mode} />
+          <SideContents headings={headings} mode={mode} />
         </div>
-        <StyledTwitterShareButton
-          title={title}
-          customClass='twitter_share_button'
-        />
+        <TwitterShareButton title={title} customClass='twitter_share_button' />
       </article>
       <div>
         <StyledPrevNext node={previous} mode={mode} />
@@ -352,7 +334,7 @@ const StyledPrevNext = styled(PrevNext)`
   }
 `;
 
-export default ({ data, pageContext }: PostProps) => {
+export default ({ data, pageContext }: PostDefaultProps) => {
   const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
   const { fluid } = cover.childImageSharp;

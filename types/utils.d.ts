@@ -37,7 +37,7 @@ export type PostPageContext = {
   slug: string;
 };
 
-export type PostProps = {
+export type PostDefaultProps = {
   data: {
     mdx: {
       body: string;
@@ -50,4 +50,19 @@ export type PostProps = {
     };
   };
   pageContext: PostPageContext;
+};
+
+export type PostProps = {
+  title: string;
+  body: string;
+  date: string;
+  tags: string[];
+  headings: {
+    value: string;
+    depth: number;
+  }[];
+  fluid: FluidObject;
+  mode: boolean;
+  previous: { frontmatter: Frontmatter; excerpt: string } | null;
+  next: { frontmatter: Frontmatter; excerpt: string } | null;
 };
