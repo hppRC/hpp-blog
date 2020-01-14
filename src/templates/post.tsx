@@ -75,7 +75,7 @@ const StyledPost = styled(Post)`
       width: 100vw;
       height: 75vh;
 
-      .gatsby-image-wrapper {
+      > .gatsby-image-wrapper {
         width: 100%;
         img,
         picture {
@@ -261,8 +261,8 @@ const PrevNext: React.FCX<{
 const StyledPrevNext = styled(PrevNext)`
   position: relative;
   width: 100%;
-
   padding: 5rem;
+
   a {
     position: relative;
     display: block;
@@ -276,14 +276,15 @@ const StyledPrevNext = styled(PrevNext)`
 
       width: 100%;
       height: 100%;
-      padding: 2rem;
+      padding: 2rem 0.5rem;
       box-shadow: 0px 3px 10px 0px #09090f30;
       transition: background-color 0.3s;
       background-color: ${({ mode }) => (mode ? 'transparent' : '#13131f')};
       border-radius: 3px;
 
-      .gatsby-image-wrapper {
+      > .gatsby-image-wrapper {
         width: 100%;
+        height: 100%;
         img,
         picture {
           border-radius: 3px;
@@ -312,6 +313,7 @@ const StyledPrevNext = styled(PrevNext)`
         flex-direction: row-reverse;
       }
       &.isPrev {
+        flex-direction: row;
       }
 
       .deco {

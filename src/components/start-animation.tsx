@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { animated, useChain, useSpring } from 'react-spring';
+import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
-const StartAnimation: React.FCX = ({ className }) => {
+const StartAnimation: React.FCX<{ mode: boolean }> = ({ className }) => {
   const springRef = useRef<any>();
   const props = useSpring({
     config: { mass: 1.8, tension: 130, friciton: 22 },
@@ -61,7 +62,7 @@ export const StyledStartAnimation = styled(StartAnimation)`
 
     div {
       position: absolute;
-      background-color: #09090f;
+      background-color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
     }
   }
 
@@ -77,4 +78,7 @@ export const StyledStartAnimation = styled(StartAnimation)`
   }
 `;
 
-export default StyledStartAnimation;
+export default () => {
+  const { mode } = ColorModeContainer.useContainer();
+  return <StyledStartAnimation mode={mode} />;
+};

@@ -1,14 +1,12 @@
 import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import { SEO } from 'src/components';
 import { useAllPosts, usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
-
-const items = ['🌝'];
 
 const Posts: React.FCX<{ mode: boolean }> = ({ mode, className }) => {
   const background = usePostBackground();
@@ -117,21 +115,21 @@ const EachArticle: React.FCX<EachArticleProps> = ({
   mode
 }) => {
   const [enter, setEnter] = useState(false);
+
   const props = useSpring({
+    config: config.wobbly,
+    transform: enter ? 'scale(1.05)' : 'scale(1.0)'
+  });
+
+  const decoProps = useSpring({
     config: config.wobbly,
     transform: enter
       ? 'translate3d(-10rem,0rem,0)'
       : 'translate3d(2rem,-10rem,0)'
   });
 
-  const ref = useRef('');
-
-  useEffect(() => {
-    ref.current = items[Math.floor(Math.random() * items.length)];
-  }, [mode]);
-
   return (
-    <article
+    <animated.article
       key={key}
       className={className}
       onMouseEnter={(e: any) => {
@@ -140,6 +138,7 @@ const EachArticle: React.FCX<EachArticleProps> = ({
       onMouseLeave={(e: any) => {
         setEnter(false);
       }}
+      style={props}
     >
       <Link to={`/posts/${slug}`}>
         <Img fluid={fluid} alt='eyecatch' backgroundColor='#fff' />
@@ -154,25 +153,26 @@ const EachArticle: React.FCX<EachArticleProps> = ({
           <p>{excerpt}</p>
         </div>
       </Link>
-      <animated.div style={props} className='deco'>
-        {ref.current}
+      <animated.div style={decoProps} className='deco'>
+        🌝
       </animated.div>
-    </article>
+    </animated.article>
   );
 };
 
 const StyledEachArticle = styled(EachArticle)`
   position: relative;
   overflow: hidden;
-  transition: background-color 0.15s;
+  transition: background-color 0.3s;
   box-shadow: 0px 3px 10px 0px #09090f30;
   background-color: ${({ mode }) => (mode ? 'transparent' : '#13131f')};
-  a {
+  > a {
     position: relative;
     display: block;
     width: 100%;
     height: 100%;
     padding: 1rem;
+    transition: color 0.3s;
     color: ${({ mode }) => (mode ? '#09090ff0' : '#fffffff0')};
     text-decoration: none;
 
@@ -187,13 +187,17 @@ const StyledEachArticle = styled(EachArticle)`
         display: flex;
         list-style: none;
         padding: 1rem 0;
+        overflow: auto;
 
         li {
           margin-right: 0.5rem;
-          padding: 0.2rem 0.3rem;
-          border: 0.5px solid ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+          transition: color, border 0.3s;
           border-radius: 3px;
           word-break: keep-all;
+          padding: 0.1rem 0.3rem;
+          border: 0.5px solid
+            ${({ mode }) => (mode ? '#09090ff0' : '#fffffff0')};
+          color: ${({ mode }) => (mode ? '#09090ff0' : '#fffffff0')};
         }
       }
 
