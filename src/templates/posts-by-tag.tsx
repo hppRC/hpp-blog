@@ -53,7 +53,6 @@ export const StyledPostsByTag = styled(PostsByTag)`
       top: -25vh;
       width: 100%;
       height: 100vh;
-      /* transform: rotate(90deg); */
     }
   }
 
