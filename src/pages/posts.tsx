@@ -1,6 +1,6 @@
 import Img from 'gatsby-image';
 import React from 'react';
-import { EachArticle, SEO } from 'src/components';
+import { EachArticle, ScatteredCharacters, SEO } from 'src/components';
 import { useAllPosts, usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 
@@ -12,9 +12,7 @@ const Posts: React.FCX<{ mode: boolean }> = ({ mode, className }) => {
   return (
     <main className={className}>
       <Img fluid={background} />
-      <section>
-        <h1>Posts</h1>
-      </section>
+      <ScatteredCharacters text={'Posts'} />
       <section>
         {useAllPosts().map(({ excerpt, frontmatter }, i) => {
           const { title, date, tags, slug, cover } = frontmatter;

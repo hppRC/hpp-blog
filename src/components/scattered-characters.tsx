@@ -38,11 +38,16 @@ const Block: React.FCX<{ ch: string }> = ({ ch }) => {
 };
 
 const StyledScatteredCharacters = styled(ScatteredCharacters)`
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
   h2 {
     font-size: 10rem;
     cursor: pointer;
     user-select: none;
-    color: ${({ mode }) => (mode ? '#ffffff' : '#09090f')};
+    color: #ffffff;
+    z-index: 1000;
   }
 `;
 
