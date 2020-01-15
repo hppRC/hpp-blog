@@ -66,3 +66,8 @@ export type PostProps = {
   previous: { frontmatter: Frontmatter; excerpt: string } | null;
   next: { frontmatter: Frontmatter; excerpt: string } | null;
 };
+
+export type PostsByTagPageContext = {
+  posts: { frontmatter: Frontmatter; excerpt: string }[];
+  tagName: string;
+};

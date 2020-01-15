@@ -9,7 +9,7 @@ const StartAnimation: React.FCX<{ mode: boolean }> = ({ className }) => {
   const props = useSpring({
     config: { mass: 1.8, tension: 130, friciton: 22 },
     to: [
-      { height: '100vh', top: '0vh', transform: 'rotate(0deg) scale(2)' },
+      { height: '100vh', top: '0vh', transform: 'rotateZ(0deg) scale(2)' },
       {
         height: '0.5vh',
         width: '300vw',
@@ -17,7 +17,7 @@ const StartAnimation: React.FCX<{ mode: boolean }> = ({ className }) => {
         bottom: '49.925vh',
         top: '49.925vh'
       },
-      { transform: 'rotate(180deg) scale(1)' },
+      { transform: 'rotateZ(180deg) scale(1)' },
       {
         height: '100vh',
         width: '100vw',
@@ -25,7 +25,7 @@ const StartAnimation: React.FCX<{ mode: boolean }> = ({ className }) => {
         bottom: '0vh',
         top: '0vh'
       },
-      { transform: 'rotate(-180deg) scale(0)' }
+      { transform: 'rotateZ(-180deg) scale(0)' }
     ],
     from: {
       width: '100vw',
@@ -34,17 +34,26 @@ const StartAnimation: React.FCX<{ mode: boolean }> = ({ className }) => {
       top: '0vh',
       right: '0vw',
       left: '0vw',
-      transform: 'rotate(0deg) scale(1)'
+      transform: 'rotateZ(0deg) scale(1)'
     },
     ref: springRef
   });
 
-  useChain([springRef]);
+  const wrapperRef = useRef<any>();
+  const wrapperProps = useSpring({
+    config: { mass: 1.8, tension: 130, friciton: 22 },
+    to: { width: '0vw' },
+    from: { width: '100vw' },
+    ref: wrapperRef
+  });
+
+  useChain([springRef, wrapperRef]);
 
   return (
     <div className={className}>
       <div>
         <animated.div style={props} />
+        <animated.div style={wrapperProps} />
       </div>
     </div>
   );
@@ -60,9 +69,19 @@ export const StyledStartAnimation = styled(StartAnimation)`
     width: 100vw;
     height: 100vh;
 
-    div {
+    div:nth-of-type(1) {
       position: absolute;
       background-color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+      z-index: 2000;
+    }
+    div:nth-of-type(2) {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: 1999;
+      background-color: ${({ mode }) => (mode ? '#100d2e' : '#09090f')};
     }
   }
 

@@ -168,8 +168,7 @@ const StyledPost = styled(Post)`
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 4rem;
+    grid-template-columns: min(50vw, 700px) min(50vw, 700px);
   }
 
   @media screen and (max-width: 1100px) {
@@ -198,7 +197,7 @@ const StyledPost = styled(Post)`
       }
     }
     > div {
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
     }
   }
   @media screen and (max-height: 430px) {
@@ -213,7 +212,7 @@ const PrevNext: React.FCX<{
   if (!node) return <section className={className}></section>;
 
   const { frontmatter, excerpt } = node;
-  const { title, date, slug, cover } = frontmatter;
+  const { title, date, slug, cover, tags } = frontmatter;
   const { fluid } = cover.childImageSharp;
 
   const [enter, setEnter] = useState(false);
@@ -226,7 +225,7 @@ const PrevNext: React.FCX<{
   const decoProps = useSpring({
     config: config.wobbly,
     transform: enter
-      ? 'translate3d(-10rem,-2rem,0)'
+      ? 'translate3d(-10rem,0rem,0)'
       : 'translate3d(2rem,-10rem,0)'
   });
 
@@ -247,6 +246,11 @@ const PrevNext: React.FCX<{
           <div>
             <h2>{title}</h2>
             <p>{date}</p>
+            <ul>
+              {tags.map((tag, j) => (
+                <li key={j}>{tag}</li>
+              ))}
+            </ul>
             <p>{excerpt}</p>
           </div>
           <animated.div className='deco' style={decoProps}>
@@ -261,6 +265,7 @@ const PrevNext: React.FCX<{
 const StyledPrevNext = styled(PrevNext)`
   position: relative;
   width: 100%;
+  height: 100%;
   padding: 5rem;
 
   a {
@@ -288,20 +293,42 @@ const StyledPrevNext = styled(PrevNext)`
         img,
         picture {
           border-radius: 3px;
+          width: 100%;
+          height: 100%;
         }
       }
 
       div {
         width: 100%;
         height: 100%;
-        padding: 2rem;
+        padding: 0 2rem;
         color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
         transition: color 0.3s;
+        max-width: 50%;
+
+        h2 {
+          display: block;
+          width: 100%;
+        }
 
         ul {
           list-style: none;
+          display: flex;
+          padding: 1rem 0;
+          overflow: scroll;
+          li {
+            font-size: 1.4rem;
+            margin-right: 0.5rem;
+            transition: color, border 0.3s;
+            border-radius: 3px;
+            word-break: keep-all;
+            padding: 0.2rem 0.4rem;
+            border: 0.5px solid ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+            color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
+          }
         }
         p {
+          overflow: scroll;
           padding: 1rem 0;
           color: ${({ mode }) => (mode ? '#09090f' : '#ffffff')};
           transition: color 0.3s;
@@ -331,6 +358,21 @@ const StyledPrevNext = styled(PrevNext)`
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {
+    padding: 2rem 0.3rem;
+    a {
+      > div {
+        display: flex;
+
+        div {
+          max-width: 100%;
+        }
+
+        &.isNext,
+        &.isPrev {
+          flex-direction: column;
+        }
+      }
+    }
   }
   @media screen and (max-height: 430px) {
   }

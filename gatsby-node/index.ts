@@ -2,7 +2,7 @@ import { GatsbyNode } from 'gatsby';
 import { fmImagesToRelative } from 'gatsby-remark-relative-images';
 import { createFilePath } from 'gatsby-source-filesystem';
 import path from 'path';
-import { Frontmatter, PostPageContext, Result } from 'types/utils';
+import { Frontmatter, PostPageContext, PostsByTagPageContext, Result } from 'types/utils';
 
 //you can't use QraphQL query fragments to get fluid object in gatsby-node.
 const query = `
@@ -93,7 +93,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const result = await graphql<Result>(query);
 
   const edges = result?.data?.allMdx.edges;
-  const postsByTag: { [key: string]: { frontmatter: Frontmatter }[] } = {}; //タグごとの投稿を格納する
+  const postsByTag: {
+    [key: string]: { frontmatter: Frontmatter; excerpt: string }[];
+  } = {}; //タグごとの投稿を格納する
 
   edges?.forEach(({ previous, next, node }) => {
     node.frontmatter.tags?.forEach(tag => {
@@ -118,7 +120,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   tags.forEach(tagName => {
     const posts = postsByTag[tagName];
-    createPage({
+    createPage<PostsByTagPageContext>({
       path: `/tags/${tagName}`,
       component: postByTagTemplate,
       context: {
