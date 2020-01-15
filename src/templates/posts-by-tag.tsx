@@ -1,6 +1,6 @@
 import Img from 'gatsby-image';
 import React from 'react';
-import { EachArticle, SEO } from 'src/components';
+import { EachArticle, ScatteredCharacters, SEO } from 'src/components';
 import { usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { Frontmatter, PostsByTagPageContext } from 'types/utils';
@@ -18,9 +18,7 @@ const PostsByTag: React.FCX<Props> = ({ className, posts, tagName, mode }) => {
   return (
     <main className={className}>
       <Img fluid={background} />
-      <section>
-        <h1>{tagName}</h1>
-      </section>
+      <ScatteredCharacters text={tagName} />
       <section>
         {posts.map(({ frontmatter, excerpt }, i: number) => {
           const { title, date, tags, slug, cover } = frontmatter;

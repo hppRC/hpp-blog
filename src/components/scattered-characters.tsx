@@ -1,13 +1,14 @@
 import React from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
+import { ColorModeContainer } from 'src/store';
 
-type Props = { text: string };
+import styled from '@emotion/styled';
+
+type Props = { text: string; mode: boolean };
 
 export const ScatteredCharacters: React.FCX<Props> = ({ className, text }) => {
-  const texts = [
-    ...'AOJCoordinatorはAOJ関連の色々をいい感じになんやかんやするサービスです'
-  ];
+  const texts = [...text];
 
   return (
     <section className={className}>
@@ -36,4 +37,16 @@ const Block: React.FCX<{ ch: string }> = ({ ch }) => {
   );
 };
 
-export default ScatteredCharacters;
+const StyledScatteredCharacters = styled(ScatteredCharacters)`
+  h2 {
+    font-size: 10rem;
+    cursor: pointer;
+    user-select: none;
+    color: ${({ mode }) => (mode ? '#ffffff' : '#09090f')};
+  }
+`;
+
+export default ({ text }: { text: string }) => {
+  const { mode } = ColorModeContainer.useContainer();
+  return <StyledScatteredCharacters text={text} mode={mode} />;
+};
