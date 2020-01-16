@@ -17,7 +17,7 @@
     "isolatedModules": true,
     "strictNullChecks": true,
     "noImplicitReturns": true,
-    // "assumeChangesOnlyAffectDirectDependencies": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
     "baseUrl": ".",
     "paths": { "*": ["types/*"], "src/*": ["src/*"], "types/*": ["types/*"] },
     "typeRoots": ["types", "node_modules/@types"]

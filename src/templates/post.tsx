@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
-import { SEO, SideContents, TwitterShareButton } from 'src/components';
+import { ScatteredCharacters, SEO, SideContents, TwitterShareButton } from 'src/components';
 import { usePostBackground } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { baseStyle, postStyle } from 'src/styles';
@@ -33,7 +33,7 @@ const Post: React.FCX<PostProps> = ({
         <section>
           <Img fluid={background} />
           <div>
-            <h1>{title}</h1>
+            <ScatteredCharacters text={title} />
             <div>
               <p>{date}</p>
               <ul>

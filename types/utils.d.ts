@@ -71,3 +71,24 @@ export type PostsByTagPageContext = {
   posts: { frontmatter: Frontmatter; excerpt: string }[];
   tagName: string;
 };
+
+export type UseAllPosts = {
+  allMdx: {
+    nodes: {
+      id: string;
+      body: string;
+      excerpt: string;
+      frontmatter: {
+        title: string;
+        date: string;
+        slug: string;
+        tags: string[];
+        cover: {
+          childImageSharp: {
+            fluid: FluidObject;
+          };
+        };
+      };
+    }[];
+  };
+};
