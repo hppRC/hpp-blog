@@ -9,7 +9,7 @@ export type Frontmatter = {
     childImageSharp: {
       fluid: FluidObject;
     };
-  };
+  } | null;
 };
 
 export type Result = {
@@ -47,7 +47,7 @@ export type PostDefaultProps = {
         depth: number;
       }[];
       frontmatter: Frontmatter;
-    };
+    } | null;
   };
   pageContext: PostPageContext;
 };
@@ -61,10 +61,21 @@ export type PostProps = {
     value: string;
     depth: number;
   }[];
-  fluid: FluidObject;
+  fluid: FluidObject | undefined;
   mode: boolean;
   previous: { frontmatter: Frontmatter; excerpt: string } | null;
   next: { frontmatter: Frontmatter; excerpt: string } | null;
+};
+
+export type EachArticleProps = {
+  key: number;
+  slug: string;
+  fluid: FluidObject | undefined;
+  title: string;
+  date: string;
+  tags: string[];
+  excerpt: string;
+  mode: boolean;
 };
 
 export type PostsByTagPageContext = {
@@ -78,17 +89,7 @@ export type UseAllPosts = {
       id: string;
       body: string;
       excerpt: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        slug: string;
-        tags: string[];
-        cover: {
-          childImageSharp: {
-            fluid: FluidObject;
-          };
-        };
-      };
+      frontmatter: Frontmatter;
     }[];
   };
 };

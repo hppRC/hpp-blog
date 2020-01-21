@@ -1,20 +1,10 @@
 import { Link } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import Img from 'gatsby-image';
 import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
+import { EachArticleProps } from 'types/utils';
 
 import styled from '@emotion/styled';
-
-type EachArticleProps = {
-  key: number;
-  slug: string;
-  fluid: FluidObject;
-  title: string;
-  date: string;
-  tags: string[];
-  excerpt: string;
-  mode: boolean;
-};
 
 const EachArticle: React.FCX<EachArticleProps> = ({
   key,
@@ -54,7 +44,7 @@ const EachArticle: React.FCX<EachArticleProps> = ({
       style={props}
     >
       <Link to={`/posts/${slug}`}>
-        <Img fluid={fluid} alt='eyecatch' backgroundColor='#fff' />
+        {fluid && <Img fluid={fluid} alt='eyecatch' backgroundColor='#fff' />}
         <div>
           <h2>{title}</h2>
           <p>{date}</p>

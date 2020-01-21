@@ -22,7 +22,7 @@ const PostsByTag: React.FCX<Props> = ({ className, posts, tagName, mode }) => {
       <section>
         {posts.map(({ frontmatter, excerpt }, i: number) => {
           const { title, date, tags, slug, cover } = frontmatter;
-          const { fluid } = cover.childImageSharp;
+          const fluid = cover?.childImageSharp?.fluid;
           return (
             <EachArticle
               key={i}

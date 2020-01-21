@@ -48,7 +48,7 @@ const Post: React.FCX<PostProps> = ({
         </section>
         <div>
           <section style={{ color: mode ? '#09090f' : '#ffffff' }}>
-            <Img fluid={fluid} alt='eyecatch image' />
+            {fluid && <Img fluid={fluid} alt='eyecatch image' />}
             <MDXRenderer>{body}</MDXRenderer>
           </section>
           <SideContents headings={headings} mode={mode} />
@@ -213,7 +213,7 @@ const PrevNext: React.FCX<{
 
   const { frontmatter, excerpt } = node;
   const { title, date, slug, cover, tags } = frontmatter;
-  const { fluid } = cover.childImageSharp;
+  const fluid = cover?.childImageSharp?.fluid;
 
   const [enter, setEnter] = useState(false);
 
@@ -379,9 +379,11 @@ const StyledPrevNext = styled(PrevNext)`
 `;
 
 export default ({ data, pageContext }: PostDefaultProps) => {
+  if (!data.mdx) return <></>;
+
   const { body, excerpt, headings, frontmatter } = data.mdx;
   const { title, date, tags, cover } = frontmatter;
-  const { fluid } = cover.childImageSharp;
+  const fluid = cover?.childImageSharp?.fluid;
   const { slug, previous, next } = pageContext;
   const { mode } = ColorModeContainer.useContainer();
 
@@ -391,7 +393,7 @@ export default ({ data, pageContext }: PostDefaultProps) => {
         title={title}
         description={excerpt}
         pathname={`/posts/${slug}`}
-        image={fluid.src}
+        image={fluid?.src}
       />
       <StyledPost
         title={title}
