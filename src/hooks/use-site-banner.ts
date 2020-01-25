@@ -20,7 +20,7 @@ export const useSiteBanner = () => {
       file(relativePath: { eq: "banner.png" }) {
         childImageSharp {
           fluid(maxWidth: 1400, quality: 90) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { Frontmatter, UseAllPosts } from 'types/utils';
 
-export const useAllPostsByTags = () => {
+export default () => {
   const data = useStaticQuery<UseAllPosts>(graphql`
     query {
       allMdx(sort: { order: ASC, fields: [frontmatter___date] }) {
@@ -14,8 +14,8 @@ export const useAllPostsByTags = () => {
             tags
             cover {
               childImageSharp {
-                fluid(maxWidth: 1000, quality: 90) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                fluid(maxWidth: 1400, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -42,5 +42,3 @@ export const useAllPostsByTags = () => {
 
   return postsByTag;
 };
-
-export default useAllPostsByTags;
