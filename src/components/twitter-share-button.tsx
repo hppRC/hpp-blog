@@ -4,23 +4,25 @@ import { animated, config, useSpring } from 'react-spring';
 
 import styled from '@emotion/styled';
 
-type Props = {
-  title: string;
-  customClass: string;
-};
+const AnimatedTwiButton = animated(TwiButton);
 
-const TwitterShareButton: React.FCX<Props> = ({
+type ContainerProps = { title: string; customClass: string };
+type Props = {
+  enter: boolean;
+  setEnter: (enter: boolean) => void;
+} & ContainerProps;
+
+const Component: React.FCX<Props> = ({
   title,
   customClass,
+  enter,
+  setEnter,
   className
 }) => {
-  const [enter, setEnter] = useState(false);
   const props = useSpring({
     config: config.wobbly,
     transform: enter ? 'scale(1.2)' : 'scale(1.0)'
   });
-  const AnimatedTwiButton = animated(TwiButton);
-
   return (
     <AnimatedTwiButton
       url={`https://blog.hpprc.com/posts/${title}`}
@@ -40,7 +42,7 @@ const TwitterShareButton: React.FCX<Props> = ({
   );
 };
 
-export const StyledTwitterShareButton = styled(TwitterShareButton)`
+const StyledComponent = styled(Component)`
   @media screen and (max-width: 1100px) {
   }
   @media screen and (max-width: 768px) {
@@ -51,4 +53,9 @@ export const StyledTwitterShareButton = styled(TwitterShareButton)`
   }
 `;
 
-export default StyledTwitterShareButton;
+const Container: React.FCX<ContainerProps> = props => {
+  const [enter, setEnter] = useState(false);
+  return <StyledComponent {...props} enter={enter} setEnter={setEnter} />;
+};
+
+export default Container;
