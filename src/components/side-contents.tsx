@@ -7,15 +7,16 @@ import { Location } from '@reach/router';
 const GithubSlugger = require('github-slugger');
 const slugger = new GithubSlugger();
 
-type Props = {
+type ContainerProps = {
   headings: {
     value: string;
     depth: number;
   }[];
   mode: boolean;
 };
+type Props = {} & ContainerProps;
 
-const SideContents: React.FCX<Props> = ({ headings, className }) => {
+const Component: React.FCX<Props> = ({ headings, className }) => {
   slugger.reset();
 
   return (
@@ -37,7 +38,7 @@ const SideContents: React.FCX<Props> = ({ headings, className }) => {
   );
 };
 
-export const StyledSideContents = styled(SideContents)`
+const StyledComponent = styled(Component)`
   padding: 1rem 0 1rem 3rem;
 
   ul {
@@ -50,7 +51,6 @@ export const StyledSideContents = styled(SideContents)`
       padding: 0.5rem;
       transition: background-color 0.15s;
       border-radius: 3px;
-
       :hover {
         background-color: ${({ mode }) => (mode ? '#09090f10' : '#ffffff10')};
       }
@@ -58,9 +58,7 @@ export const StyledSideContents = styled(SideContents)`
       a {
         text-decoration: none;
         color: ${({ mode }) => (mode ? '#09090f90' : '#ffffff90')};
-
         transition: color 0.15s;
-
         :hover {
           color: ${({ mode }) => (mode ? '#09090fc0' : '#ffffffc0')};
         }
@@ -74,4 +72,8 @@ export const StyledSideContents = styled(SideContents)`
   }
 `;
 
-export default StyledSideContents;
+const Container: React.FCX<ContainerProps> = props => {
+  return <StyledComponent {...props} />;
+};
+
+export default Container;

@@ -1,7 +1,5 @@
 export { default as useAllPosts } from './use-all-posts';
 export { default as useAllTags } from './use-all-tags';
-export { default as useSiteBanner } from './use-site-banner';
-export { default as usePostBackground } from './use-post-background';
 export { default as useSiteMetadata } from './use-site-metadata';
 export { default as useDelay } from './use-delay';
 export { default as useAnyImage } from './use-any-image';

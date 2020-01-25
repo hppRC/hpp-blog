@@ -7,7 +7,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React, { useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import { ScatteredCharacters, SEO, SideContents, TwitterShareButton } from 'src/components';
-import { usePostBackground } from 'src/hooks';
+import { useAnyImage } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { baseStyle, postStyle } from 'src/styles';
 import { Frontmatter, PostDefaultProps, PostProps } from 'types/utils';
@@ -24,44 +24,42 @@ const Post: React.FCX<PostProps> = ({
   mode,
   previous,
   next,
+  background,
   className
-}) => {
-  const background = usePostBackground();
-  return (
-    <main className={className}>
-      <article>
-        <section>
-          <Img fluid={background} />
-          <div>
-            <ScatteredCharacters text={title} />
-            <div>
-              <p>{date}</p>
-              <ul>
-                {tags.map((tag, i) => (
-                  <li key={i}>
-                    <Link to={`/tags/${tag}`}>{tag}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
+}) => (
+  <main className={className}>
+    <article>
+      <section>
+        <Img fluid={background} />
         <div>
-          <section style={{ color: mode ? '#09090f' : '#ffffff' }}>
-            {fluid && <Img fluid={fluid} alt='eyecatch image' />}
-            <MDXRenderer>{body}</MDXRenderer>
-          </section>
-          <SideContents headings={headings} mode={mode} />
+          <ScatteredCharacters text={title} />
+          <div>
+            <p>{date}</p>
+            <ul>
+              {tags.map((tag, i) => (
+                <li key={i}>
+                  <Link to={`/tags/${tag}`}>{tag}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <TwitterShareButton title={title} customClass='twitter_share_button' />
-      </article>
+      </section>
       <div>
-        <StyledPrevNext node={previous} mode={mode} />
-        <StyledPrevNext node={next} isNext mode={mode} />
+        <section style={{ color: mode ? '#09090f' : '#ffffff' }}>
+          {fluid && <Img fluid={fluid} alt='eyecatch image' />}
+          <MDXRenderer>{body}</MDXRenderer>
+        </section>
+        <SideContents headings={headings} mode={mode} />
       </div>
-    </main>
-  );
-};
+      <TwitterShareButton title={title} customClass='twitter_share_button' />
+    </article>
+    <div>
+      <StyledPrevNext node={previous} mode={mode} />
+      <StyledPrevNext node={next} isNext mode={mode} />
+    </div>
+  </main>
+);
 
 const StyledPost = styled(Post)`
   article {
@@ -386,6 +384,7 @@ export default ({ data, pageContext }: PostDefaultProps) => {
   const fluid = cover?.childImageSharp?.fluid;
   const { slug, previous, next } = pageContext;
   const { mode } = ColorModeContainer.useContainer();
+  const background = useAnyImage('background.jpg');
 
   return (
     <>
@@ -405,6 +404,7 @@ export default ({ data, pageContext }: PostDefaultProps) => {
         previous={previous}
         next={next}
         mode={mode}
+        background={background}
       />
     </>
   );
@@ -425,8 +425,8 @@ export const query = graphql`
         tags
         cover {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            fluid(maxWidth: 1400, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

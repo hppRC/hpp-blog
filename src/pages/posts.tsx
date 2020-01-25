@@ -1,39 +1,39 @@
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import React from 'react';
 import { EachArticle, ScatteredCharacters, SEO } from 'src/components';
-import { useAllPosts, usePostBackground } from 'src/hooks';
+import { useAllPosts, useAnyImage } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 
 import styled from '@emotion/styled';
 
-const Posts: React.FCX<{ mode: boolean }> = ({ mode, className }) => {
-  const background = usePostBackground();
-
-  return (
-    <main className={className}>
-      <Img fluid={background} />
-      <ScatteredCharacters text={'Posts'} />
-      <section>
-        {useAllPosts().map(({ excerpt, frontmatter }, i) => {
-          const { title, date, tags, slug, cover } = frontmatter;
-          const { fluid } = cover.childImageSharp;
-          return (
-            <EachArticle
-              key={i}
-              title={title}
-              date={date}
-              tags={tags}
-              slug={slug}
-              fluid={fluid}
-              excerpt={excerpt}
-              mode={mode}
-            />
-          );
-        })}
-      </section>
-    </main>
-  );
-};
+const Posts: React.FCX<{ mode: boolean; background?: FluidObject }> = ({
+  mode,
+  background,
+  className
+}) => (
+  <main className={className}>
+    <Img fluid={background} />
+    <ScatteredCharacters text={'Posts'} />
+    <section>
+      {useAllPosts().map(({ excerpt, frontmatter }, i) => {
+        const { title, date, tags, slug, cover } = frontmatter;
+        const fluid = cover?.childImageSharp.fluid;
+        return (
+          <EachArticle
+            key={i}
+            title={title}
+            date={date}
+            tags={tags}
+            slug={slug}
+            fluid={fluid}
+            excerpt={excerpt}
+            mode={mode}
+          />
+        );
+      })}
+    </section>
+  </main>
+);
 
 const StyledPosts = styled(Posts)`
   position: relative;
@@ -90,10 +90,11 @@ const StyledPosts = styled(Posts)`
 
 export default (props: any) => {
   const { mode } = ColorModeContainer.useContainer();
+  const background = useAnyImage('background.jpg');
   return (
     <>
       <SEO title='Posts' pathname={props.path} />
-      <StyledPosts mode={mode} />
+      <StyledPosts mode={mode} background={background} />
     </>
   );
 };

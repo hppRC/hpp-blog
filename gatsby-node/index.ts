@@ -18,7 +18,7 @@ query {
           tags
           cover {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 90) {
+              fluid(maxWidth: 1400, quality: 90) {
                 tracedSVG
                 base64
                 sizes
@@ -41,7 +41,7 @@ query {
           tags
           cover {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 90) {
+              fluid(maxWidth: 1400, quality: 90) {
                 tracedSVG
                 base64
                 sizes
@@ -64,7 +64,7 @@ query {
           tags
           cover {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 90) {
+              fluid(maxWidth: 1400, quality: 90) {
                 tracedSVG
                 base64
                 sizes

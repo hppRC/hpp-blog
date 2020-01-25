@@ -10,7 +10,7 @@ type Props = {
   };
 };
 
-export const useAllTags = () => {
+export default () => {
   const data = useStaticQuery<Props>(graphql`
     query {
       allMdx {
@@ -34,5 +34,3 @@ export const useAllTags = () => {
 
   return Array.from(tags.values());
 };
-
-export default useAllTags;

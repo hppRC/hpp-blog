@@ -1,47 +1,52 @@
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import React from 'react';
 import { EachArticle, ScatteredCharacters, SEO } from 'src/components';
-import { usePostBackground } from 'src/hooks';
+import { useAnyImage } from 'src/hooks';
 import { ColorModeContainer } from 'src/store';
 import { Frontmatter, PostsByTagPageContext } from 'types/utils';
 
 import styled from '@emotion/styled';
 
+type ContainerProps = { pageContext: PostsByTagPageContext; path: string };
 type Props = {
   posts: { frontmatter: Frontmatter; excerpt: string }[];
   tagName: string;
   mode: boolean;
+  background?: FluidObject;
 };
 
-const PostsByTag: React.FCX<Props> = ({ className, posts, tagName, mode }) => {
-  const background = usePostBackground();
-  return (
-    <main className={className}>
-      <Img fluid={background} />
-      <ScatteredCharacters text={tagName} />
-      <section>
-        {posts.map(({ frontmatter, excerpt }, i: number) => {
-          const { title, date, tags, slug, cover } = frontmatter;
-          const fluid = cover?.childImageSharp?.fluid;
-          return (
-            <EachArticle
-              key={i}
-              title={title}
-              date={date}
-              tags={tags}
-              slug={slug}
-              fluid={fluid}
-              excerpt={excerpt}
-              mode={mode}
-            />
-          );
-        })}
-      </section>
-    </main>
-  );
-};
+const Component: React.FCX<Props> = ({
+  className,
+  posts,
+  tagName,
+  mode,
+  background
+}) => (
+  <main className={className}>
+    <Img fluid={background} />
+    <ScatteredCharacters text={tagName} />
+    <section>
+      {posts.map(({ frontmatter, excerpt }, i: number) => {
+        const { title, date, tags, slug, cover } = frontmatter;
+        const fluid = cover?.childImageSharp?.fluid;
+        return (
+          <EachArticle
+            key={i}
+            title={title}
+            date={date}
+            tags={tags}
+            slug={slug}
+            fluid={fluid}
+            excerpt={excerpt}
+            mode={mode}
+          />
+        );
+      })}
+    </section>
+  </main>
+);
 
-export const StyledPostsByTag = styled(PostsByTag)`
+const StyledComponent = styled(Component)`
   position: relative;
 
   > .gatsby-image-wrapper {
@@ -93,13 +98,21 @@ export const StyledPostsByTag = styled(PostsByTag)`
   }
 `;
 
-export default (props: any) => {
+const Container: React.FCX<ContainerProps> = props => {
   const { posts, tagName }: PostsByTagPageContext = props.pageContext;
   const { mode } = ColorModeContainer.useContainer();
+  const background = useAnyImage('background.jpg');
   return (
     <>
       <SEO title={tagName} pathname={props.path} />
-      <StyledPostsByTag posts={posts} tagName={tagName} mode={mode} />
+      <StyledComponent
+        posts={posts}
+        tagName={tagName}
+        mode={mode}
+        background={background}
+      />
     </>
   );
 };
+
+export default Container;

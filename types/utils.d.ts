@@ -62,6 +62,7 @@ export type PostProps = {
     depth: number;
   }[];
   fluid: FluidObject | undefined;
+  background: FluidObject | undefined;
   mode: boolean;
   previous: { frontmatter: Frontmatter; excerpt: string } | null;
   next: { frontmatter: Frontmatter; excerpt: string } | null;
