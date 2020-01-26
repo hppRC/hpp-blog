@@ -5,7 +5,7 @@ const config = {
   siteUrl: `https://blog.hpprc.com`,
   siteDescription: `personal blog made with Gatsby, TypeScript.`,
   siteLanguage: `ja`,
-  siteImage: `/banner.png`,
+  siteImage: `/banner.jpg`,
   author: `@hpp_ricecake`, // twitter account id
   basePath: `/`,
   social: {
