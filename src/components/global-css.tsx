@@ -9,7 +9,6 @@ export const GlobalCSS = () => {
     <Global
       styles={css`
         /* reffer to this: https://qiita.com/RinoTsuka/items/b30e03ce10aa38ac2a10#_reference-aab4ed4b3d365dfead76 */
-
         html {
           font-size: 62.5%;
           @font-face {

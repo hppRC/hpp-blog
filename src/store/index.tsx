@@ -1,1 +1,1 @@
-export * from './color-mode-container';
+export { default as ColorModeContainer } from './color-mode-container';
