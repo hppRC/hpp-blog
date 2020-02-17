@@ -1,24 +1,16 @@
 ---
-slug: 3yayo
-date: 2018-11-08T14:49:23.467Z
-title: 3yayo
+slug: test1
+date: 2019-11-08T14:49:23.467Z
+title: test1というタイトルな訳ですが
 tags:
-  - 3yayo
+  - test1
   - react
   - gatsby
   - ssr
-  - tag1
-  - tag2
-  - tag3
-  - tag4
-  - tag5
-  - tag6
-  - tag7
-  - tag8
-cover: /assets/test1.jpg
+cover: ../assets/test1.jpg
 ---
 
-# 3yayo
+# this is test
 
 ```javascript{1,5-8}:title=gatsby-config.js
 plugins: [
