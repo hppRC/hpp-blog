@@ -1,13 +1,13 @@
 ---
 slug: test1
 date: 2019-11-08T14:49:23.467Z
-title: test1というタイトルな訳ですが
+title: test1というタイトルな訳ですがどうなってんのおおおおお👴
 tags:
   - test1
   - react
   - gatsby
   - ssr
-cover: ../assets/test1.jpg
+
 ---
 
 # this is test

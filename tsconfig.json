@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "umd",
+    "jsx": "react",
+    "lib": ["dom", "es2015", "es2020"],
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+
+    "strict": true,
+
+    "esModuleInterop": true,
+
+    "isolatedModules": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    },
+    "typeRoots": ["types", "node_modules/@types"]
+  },
+  "watchOptions": {
+    "watchFile": "dynamicPriorityPolling",
+    "watchDirectory": "dynamicPriorityPolling",
+    "fallbackPolling": "dynamicPriority"
+  }
+}
