@@ -6,7 +6,7 @@
   "author": "hppRC <hpp.ricecake@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@hpprc/gatsby-theme-blog": "^1.4.8",
+    "@hpprc/gatsby-theme-blog": "^1.4.11",
     "gatsby": "^2.19.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
