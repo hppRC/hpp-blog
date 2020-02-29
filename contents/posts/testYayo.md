@@ -8,7 +8,7 @@ tags:
   - react
   - gatsby
   - ssr
-cover: /assets/test2.jpg
+cover: ../assets/test2.jpg
 ---
 
 # this is test2

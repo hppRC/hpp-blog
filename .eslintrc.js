@@ -9,7 +9,7 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint', 'prettier', 'react-hooks'],
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+    ecmaVersion: 2019, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     ecmaFeatures: {
       jsx: true
@@ -82,7 +82,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.js', '.jsx', '.tsx']
+        extensions: ['.js', '.jsx', 'ts', '.tsx']
       }
     ],
     'react-hooks/rules-of-hooks': 'error',
