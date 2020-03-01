@@ -17,5 +17,12 @@ const siteMetadata = {
 
 module.exports = {
   siteMetadata,
-  plugins: [`@hpprc/gatsby-theme-blog`]
+  plugins: [
+    {
+      resolve: `@hpprc/gatsby-theme-blog`,
+      options: {
+        googleAnalyticsTrackingId: 'UA-149661454-2'
+      }
+    }
+  ]
 };

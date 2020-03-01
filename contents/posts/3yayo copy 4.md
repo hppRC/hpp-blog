@@ -1,5 +1,5 @@
 ---
-slug: 3yayo
+slug: 3yay
 date: 2018-11-08T14:49:23.467Z
 title: 3yayo
 tags:
@@ -15,8 +15,8 @@ tags:
   - tag6
   - tag7
   - tag8
-cover: ../assets/test1.jpg
 ---
+
 
 # 3yayo
 
