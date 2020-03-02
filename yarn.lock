@@ -984,10 +984,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@hpprc/gatsby-theme-blog@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@hpprc/gatsby-theme-blog/-/gatsby-theme-blog-1.9.4.tgz#0b3d1d321b54684ac8b7b4aab1ff9acb1b9a5ac2"
-  integrity sha512-+KNWvfSfpDtEnCDRNxgyAAR4NmvGFJFyCEXl0xrmYfhbmk6if1W/YtYNvu4m0ntQqUdRwZhjgHyCPBfQZXdcog==
+"@hpprc/gatsby-theme-blog@^1.9.5":
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/@hpprc/gatsby-theme-blog/-/gatsby-theme-blog-1.9.5.tgz#3a47d8bfd65062305da843e2dfdad7e3bdf17b3a"
+  integrity sha512-fud5BLzAfGU3UebfHn9DaaZtbdFq/H/lHHl4Ekge4fXL42LhSqmaQAj5qVdBMDDHffFKTyVpOzqQ6l3n29b/9A==
   dependencies:
     "@emotion/core" "^10.0.27"
     "@emotion/styled" "^10.0.27"
