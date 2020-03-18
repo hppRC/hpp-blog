@@ -45,7 +45,7 @@ cover:
 
 ### points
 
-- **[for students]**education should always be listed first
+- **[for students]** education should always be listed first
 - if you have multiple distinct categories of experience, consider creating subsections for each. Include personal, class projects next.
 - you can optional section to talk about yourself
 
@@ -61,7 +61,7 @@ cover:
 - Include your anticipated graduation date in the month-year format
 - Include your cumulative grade point average
 
-Although GPA is a factor, we look at the whole package and understant that every school and student is different
+Although GPA is a factor, we look at the whole package and understand that every school and student is different
 
 ## Experience
 
@@ -83,7 +83,7 @@ So if you're student, be sure to include impact from things like academic resear
 
 To read the job description look at the language it uses.
 **Writing a resume for a specific job description takes a little bit of effort, but it can really help your application stand out.**
-You can even bold and italicize keywords related to the job description to highlight your relevant skils and experience.
+You can even bold and italicize keywords related to the job description to highlight your relevant skills and experience.
 
 ### Good Framework to describe achievements
 
@@ -113,4 +113,4 @@ This is particularly important if you're currently a student.
 
 ### Tips
 
-Check out the links in the description for more resources to help you prepare your application for Google, and head over to the career site to see our open jobs and internsihps
+Check out the links in the description for more resources to help you prepare your application for Google, and head over to the career site to see our open jobs and internships
