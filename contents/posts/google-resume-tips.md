@@ -8,7 +8,7 @@ tags:
 cover:
 ---
 
-以下の動画を文字起こしさせていただいて、日本語翻訳などをした記事です。
+以下の動画を文字起こしさせていただいて、日本語訳などをした記事です。
 そんな感じです。
 
 ### [Create Your Resume for Google: Tips and Advice](https://youtu.be/BYUy1yvjHxE)
