@@ -5,7 +5,7 @@ title: Google Resume Tips
 tags:
   - carrier
   - engineering
-cover:
+cover: ../assets/banner.jpg
 ---
 
 以下の動画を文字起こしさせていただいて、日本語訳などをした記事です。
