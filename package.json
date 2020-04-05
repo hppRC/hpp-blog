@@ -21,7 +21,7 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/react": "16.9.27",
+    "@types/react": "16.9.32",
     "stylelint": "13.2.0",
     "stylelint-config-recess-order": "2.0.4",
     "stylelint-config-recommended": "3.0.0",
