@@ -19,6 +19,6 @@ open /Applications/Google\ Chrome.app/
 エイリアスを貼っておくと便利。
 
 ```bash
-
 alias chrome='open /Applications/Google\ Chrome.app/'
+
 ```

@@ -9,10 +9,10 @@ const siteMetadata = {
   author: `@hpp_ricecake`, // twitter account id
   basePath: `/`,
   social: {
-    twitter: 'https://twitter.com/hpp_ricecake',
-    github: 'https://github.com/hppRC',
-    qiita: 'https://qiita.com/hppRC'
-  }
+    twitter: `https://twitter.com/hpp_ricecake`,
+    github: `https://github.com/hppRC`,
+    qiita: `https://qiita.com/hppRC`,
+  },
 };
 
 module.exports = {
@@ -21,8 +21,8 @@ module.exports = {
     {
       resolve: `@hpprc/gatsby-theme-blog`,
       options: {
-        googleAnalyticsTrackingId: 'UA-149661454-2'
-      }
-    }
-  ]
+        googleAnalyticsTrackingId: `UA-149661454-2`,
+      },
+    },
+  ],
 };

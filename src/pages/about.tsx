@@ -19,13 +19,11 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = props => {
-  return (
-    <>
-      <SEO title='about' pathname={props.path} />
-      <StyledComponent />
-    </>
-  );
-};
+const Container: React.FCX<ContainerProps> = ({ path }) => (
+  <>
+    <SEO title='about' pathname={path} />
+    <StyledComponent />
+  </>
+);
 
 export default Container;
