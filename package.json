@@ -5,32 +5,7 @@
   "repository": "ssh://git@github.com/hppRC/hpp-blog.git",
   "author": "hppRC <hpp.ricecake@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "@hpprc/gatsby-theme-blog": "^1.10.5",
-    "gatsby": "^2.19.45",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "develop": "gatsby develop",
-    "type-check": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@types/react": "16.9.34",
-    "stylelint": "13.3.2",
-    "stylelint-config-recess-order": "2.0.4",
-    "stylelint-config-recommended": "3.0.0",
-    "stylelint-config-standard": "20.0.0",
-    "stylelint-config-styled-components": "0.1.1",
-    "stylelint-declaration-block-no-ignored-properties": "2.3.0",
-    "stylelint-no-unsupported-browser-features": "4.0.0",
-    "stylelint-order": "4.0.0",
-    "ts-node": "8.8.2",
-    "typescript": "3.8.3"
-  }
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
 }
