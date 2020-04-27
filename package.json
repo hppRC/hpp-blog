@@ -6,7 +6,7 @@
   "author": "hppRC <hpp.ricecake@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@hpprc/gatsby-theme-blog": "^1.11.0",
-    "gatsby": "^2.20.29",
+    "gatsby": "^2.21.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
