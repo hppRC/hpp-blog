@@ -2,8 +2,11 @@
   publish = "public"
   command = "yarn build"
 
-[build.environment]
+[[environment]]
   YARN_VERSION = "1.22.4"
   NODE_VERSION = "14.0.0"
   YARN_FLAGS = "--no-ignore-optional"
   NODE_OPTIONS = "--max_old_space_size=4096"
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
