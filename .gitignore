@@ -76,3 +76,4 @@ cypress/screenshots
 junit.xml
 
 update.sh
+update_dev.sh
