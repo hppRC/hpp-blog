@@ -1,5 +1,3 @@
-const path = require(`path`);
-
 const siteTitle = `hpp blog🌝`;
 
 const siteMetadata = {
@@ -112,8 +110,9 @@ const RSSFeedPlugin = {
               ...frontmatter,
               description: excerpt,
               date,
-              url: `${siteUrl}${path.join(`/posts`, slug)}`,
-              guid: `${siteUrl}${path.join(`/posts`, slug)}`,
+              url: `${siteUrl}/posts${slug}`,
+              guid: `${siteUrl}/posts${slug}`,
+              // eslint-disable-next-line @typescript-eslint/camelcase
               custom_elements: [{ 'content:encoded': body }],
             };
           });
@@ -144,6 +143,12 @@ module.exports = {
   siteMetadata,
   plugins: [
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-transformer-sharp`,
+      options: {
+        checkSupportedExtensions: false,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
