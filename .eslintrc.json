@@ -17,9 +17,10 @@
   "rules": {
     "@typescript-eslint/no-unused-vars": [1, { "argsIgnorePattern": "res|next|stage|^err|on|config|e|_" }],
     "arrow-body-style": [2, "as-needed"],
-    "no-param-reassign": [2, { "props": 0 }],
     "no-unused-expressions": [1, { "allowTaggedTemplates": true }],
     "quotes": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/quotes": [2, "backtick", { "avoidEscape": true }],
     "import/no-unresolved": 0,
     "react/jsx-uses-react": 1,
@@ -31,7 +32,8 @@
     "no-shadow": 0,
     "react/prop-types": 0,
     "import/extensions": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "import/prefer-default-export": 0
   },
   "settings": {
     "react": {
