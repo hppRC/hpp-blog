@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ArticleCard, Background, ScatteredChars, SEO } from 'src/components';
 import { useAllPosts } from 'src/hooks';
 import { postsStyle } from 'src/styles';
@@ -7,40 +7,40 @@ import { AllPosts } from 'src/types';
 import styled from '@emotion/styled';
 
 type ContainerProps = { path: string };
-type Props = { posts: AllPosts };
+type Props = { allPosts: AllPosts };
 
-const Component: React.FCX<Props> = ({ className, posts }) => (
+const Component: React.FCX<Props> = memo(({ className, allPosts }) => (
   <main className={className}>
     <Background />
     <section>
-      <ScatteredChars chars='hpp blog' />
+      <ScatteredChars chars='posts' />
     </section>
     <ul>
-      {posts.map(({ excerpt, frontmatter }) => {
-        const { slug } = frontmatter;
+      {allPosts.map(({ excerpt, frontmatter }) => {
         const fluid = frontmatter.cover?.childImageSharp.fluid;
         return (
-          <li key={slug}>
+          <li key={frontmatter.slug}>
             <ArticleCard frontmatter={frontmatter} fluid={fluid} excerpt={excerpt} />
           </li>
         );
       })}
     </ul>
   </main>
-);
+));
 
 const StyledComponent = styled(Component)`
   ${postsStyle}
 `;
 
 const Container: React.FCX<ContainerProps> = ({ path }) => {
-  const nodes = useAllPosts();
+  const nodes: AllPosts = useAllPosts();
+
   return (
     <>
-      <SEO title='Top' pathname={path} />
-      <StyledComponent posts={nodes} />
+      <SEO title='Posts' pathname={path} />
+      <StyledComponent allPosts={nodes} />
     </>
   );
 };
 
-export default Container;
+export default memo(Container);
