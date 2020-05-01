@@ -43,7 +43,7 @@ const StyledHatebuButton = styled(HatebuButton)`
 
 const Component: React.FCX<Props> = ({ className, title, slug, twitter, siteUrl }) => {
   const twitterAccount = twitter.split(`/`).pop(); // @hpp_ricecaeke -> hpp_ricecake
-  const articleUrl = `${siteUrl}posts/${slug}`;
+  const articleUrl = `${siteUrl}/posts/${slug}`;
   return (
     <div className={className}>
       <FacebookShareButton url={articleUrl}>

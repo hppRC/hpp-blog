@@ -36,8 +36,8 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}${pathname || ``}`,
-    image: `${siteUrl}${image || banner?.src}`,
+    url: `${siteUrl}/${pathname || ``}`,
+    image: `${siteUrl}/${image || banner?.src}`,
   };
 
   // JSON+LD configurations
