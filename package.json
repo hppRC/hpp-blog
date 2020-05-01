@@ -1,6 +1,6 @@
 {
   "name": "hpp-blog",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "main": "index.js",
   "repository": "ssh://git@github.com/hppRC/hpp-blog.git",
   "author": "hppRC <hpp.ricecake@gmail.com>",
