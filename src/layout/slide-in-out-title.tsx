@@ -37,12 +37,12 @@ const Component: React.FCX<Props> = memo(({ className }) => {
   }, [bind]);
 
   return (
-    <animated.div style={{ transform: translate as string }} className={className}>
+    <animated.div style={{ transform: translate }} className={className}>
       <Link to='/'>
         <h1 ref={ref}>
           hpp blog
           <animated.div style={{ display: `inline-block`, width }} />
-          <animated.span role='img' aria-label='title icon' style={{ transform: scale as string }}>
+          <animated.span role='img' aria-label='title icon' style={{ transform: scale }}>
             🌝
           </animated.span>
         </h1>

@@ -2,10 +2,19 @@ import React, { memo } from 'react';
 
 import styled from '@emotion/styled';
 
+import Footer from './footer';
+import Header from './header';
+
 type ContainerProps = { children: React.FCX };
 type Props = {} & ContainerProps;
 
-const Component: React.FCX<Props> = memo(({ children }) => <>{children}</>);
+const Component: React.FCX<Props> = memo(({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
+));
 
 const StyledComponent = styled(Component)`
   @media screen and (max-width: 1100px) {

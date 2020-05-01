@@ -12,7 +12,8 @@ type Props = { theme: Theme; author: string } & ContainerProps;
 const Component: React.FCX<Props> = memo(({ className, author }) => (
   <footer className={className}>
     <div>
-      Copyright©2020.<a href={`https://twitter.com/${author.slice(1)}`}> {author}</a>
+      Copyright©2020.
+      <a href={`https://twitter.com/${author.slice(1)}`}>{author}</a>
     </div>
     <div>
       <a href='https://github.com/hppRC' target='_blank' rel='noopener noreferrer' aria-label='Github Link'>
@@ -27,7 +28,8 @@ const Component: React.FCX<Props> = memo(({ className, author }) => (
       >
         Theme
       </a>
-      by{` `}
+      by
+      {` `}
       <a href='https://hpprc.com' target='_blank' rel='noopener noreferrer'>
         hpp
         <span role='img' aria-label='eyecatch'>

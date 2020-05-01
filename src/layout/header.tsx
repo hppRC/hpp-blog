@@ -8,18 +8,16 @@ import SlideInOutTitle from './slide-in-out-title';
 type ContainerProps = {};
 type Props = {} & ContainerProps;
 
-const Component: React.FCX<Props> = ({ className }) => {
-  return (
-    <header className={className}>
-      <div>
-        <SlideInOutTitle />
-        <nav>
-          <ModeButton />
-        </nav>
-      </div>
-    </header>
-  );
-};
+const Component: React.FCX<Props> = ({ className }) => (
+  <header className={className}>
+    <div>
+      <SlideInOutTitle />
+      <nav>
+        <ModeButton />
+      </nav>
+    </div>
+  </header>
+);
 
 const StyledComponent = styled(Component)`
   position: fixed;
@@ -71,8 +69,6 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = () => {
-  return <StyledComponent />;
-};
+const Container: React.FCX<ContainerProps> = () => <StyledComponent />;
 
 export default Container;
