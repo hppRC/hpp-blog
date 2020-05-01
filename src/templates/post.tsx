@@ -41,7 +41,7 @@ const StyledComponent = styled(Component)`
   padding-bottom: 10rem;
 
   > article {
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto 10rem auto;
     display: grid;

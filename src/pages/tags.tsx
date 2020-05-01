@@ -12,7 +12,7 @@ const Component: React.FCX<Props> = ({ className, tags }) => (
   <main className={className}>
     <Background />
     <section>
-      <ScatteredChars chars='tags' />
+      <ScatteredChars chars='tags' isTitle />
     </section>
     <ul>
       {tags.map((tag) => (

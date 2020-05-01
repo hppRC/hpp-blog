@@ -13,7 +13,7 @@ const Component: React.FCX<Props> = memo(({ className, allPosts }) => (
   <main className={className}>
     <Background />
     <section>
-      <ScatteredChars chars='posts' />
+      <ScatteredChars chars='posts' isTitle />
     </section>
     <ul>
       {allPosts.map(({ excerpt, frontmatter }) => {

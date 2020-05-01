@@ -13,14 +13,13 @@ const Component: React.FCX<Props> = ({ className, posts }) => (
   <main className={className}>
     <Background />
     <section>
-      <ScatteredChars chars='hpp blog' />
+      <ScatteredChars chars='hpp blog' isTitle />
     </section>
     <ul>
       {posts.map(({ excerpt, frontmatter }) => {
-        const { slug } = frontmatter;
         const fluid = frontmatter.cover?.childImageSharp.fluid;
         return (
-          <li key={slug}>
+          <li key={frontmatter.slug}>
             <ArticleCard frontmatter={frontmatter} fluid={fluid} excerpt={excerpt} />
           </li>
         );
@@ -31,6 +30,9 @@ const Component: React.FCX<Props> = ({ className, posts }) => (
 
 const StyledComponent = styled(Component)`
   ${postsStyle}
+  > section > ul > li > h2 {
+    font-size: 5rem;
+  }
 `;
 
 const Container: React.FCX<ContainerProps> = ({ path }) => {
