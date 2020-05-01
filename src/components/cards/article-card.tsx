@@ -3,13 +3,13 @@ import { FluidObject } from 'gatsby-image';
 import React, { memo, useState } from 'react';
 import { FaTags } from 'react-icons/fa';
 import { animated, config, useSpring } from 'react-spring';
+import { MemolizedImage, TagsList } from 'src/components';
 import { useAnyImage } from 'src/hooks';
 import { useTheme } from 'src/theme';
 import { Frontmatter, Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 
-import { MemolizedImage, TagsList } from '../';
 import DecoMoon from './deco-moon';
 
 type ContainerProps = {
@@ -39,7 +39,7 @@ const Component: React.FCX<Props> = memo(({ className, excerpt, frontmatter, ima
       onMouseLeave={() => setEnter(false)}
       style={sp}
     >
-      <Link to={`blog/${slug}`}>
+      <Link to={`posts/${slug}`}>
         <MemolizedImage fluid={image} />
         <div>
           <h2>{title}</h2>

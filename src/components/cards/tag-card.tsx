@@ -9,7 +9,7 @@ import { Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 
-import { DecoMoon } from './';
+import { DecoMoon } from '.';
 
 type ContainerProps = {
   tag: string;

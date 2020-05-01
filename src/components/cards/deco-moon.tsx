@@ -13,6 +13,7 @@ const Component: React.FCX<Props> = memo(({ className, enter }) => {
   });
 
   return (
+    // eslint-disable-next-line jsx-a11y/accessible-emoji
     <animated.span role='img' aria-label='decoration' style={sp} className={className}>
       🌝
     </animated.span>

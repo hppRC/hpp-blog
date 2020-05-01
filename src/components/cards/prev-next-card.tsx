@@ -1,14 +1,14 @@
 import { Link } from 'gatsby';
 import React, { memo, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
+import { MemolizedImage, TagsList } from 'src/components';
 import { useAnyImage } from 'src/hooks';
 import { useTheme } from 'src/theme';
 import { PostNode, Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 
-import { MemolizedImage, TagsList } from '../';
-import { DecoMoon } from './';
+import DecoMoon from './deco-moon';
 
 type ContainerProps = { prev: PostNode; next: PostNode };
 type Props = { theme: Theme } & ContainerProps;
@@ -19,19 +19,19 @@ const Card: React.FCX<CardProps> = memo(({ node }) => {
   const bannerJPG = useAnyImage(`banner.jpg`);
   const [enter, setEnter] = useState(false);
 
-  if (!node) return <div />;
-  const { frontmatter, excerpt } = node;
-  const { title, date, slug, cover, tags } = frontmatter;
-  const fluid = cover?.childImageSharp?.fluid || bannerPNG || bannerJPG;
-
   const sp = useSpring({
     config: config.wobbly,
     transform: enter ? `scale(1.05)` : `scale(1.0)`,
   });
 
+  if (!node) return <div />;
+  const { frontmatter, excerpt } = node;
+  const { title, date, slug, cover, tags } = frontmatter;
+  const fluid = cover?.childImageSharp?.fluid || bannerPNG || bannerJPG;
+
   return (
     <animated.article style={sp} onMouseEnter={() => setEnter(true)} onMouseLeave={() => setEnter(false)}>
-      <Link to={`blog/${slug}`}>
+      <Link to={`posts/${slug}`}>
         <MemolizedImage fluid={fluid} />
         <section>
           <h2>{title}</h2>
