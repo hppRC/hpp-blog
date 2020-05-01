@@ -23,8 +23,8 @@ const Component: React.FCX<Props> = memo(({ className, headings }) => (
   <Location>
     {({ location }) => (
       <ul className={className}>
-        {headings.map(({ value, depth }, i) => (
-          <li key={i} style={{ paddingLeft: `${depth * 1.1}rem` }}>
+        {headings.map(({ value, depth }) => (
+          <li key={value} style={{ paddingLeft: `${depth * 1.1}rem` }}>
             <Link to={`${location.pathname}#${slugger.slug(value)}`}>{value}</Link>
           </li>
         ))}
