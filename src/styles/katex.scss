@@ -1,0 +1,21 @@
+.katex {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  overflow: scroll;
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 1100px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .katex-html {
+    .base {
+      padding: 0.5rem;
+    }
+  }
+}
+@media screen and (max-height: 430px) {
+}

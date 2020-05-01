@@ -1,14 +1,20 @@
 import React from 'react';
+import { SEO } from 'src/components';
+import { baseStyle } from 'src/styles';
 
 import styled from '@emotion/styled';
-import { SEO } from '@hpprc/gatsby-theme-blog/src/components';
 
 type ContainerProps = { path: string };
 type Props = {};
 
-const Component: React.FCX<Props> = ({ className }) => <div className={className}>about</div>;
+const Component: React.FCX<Props> = ({ className }) => (
+  <main className={className}>
+    <h1>Not Found</h1>
+  </main>
+);
 
 const StyledComponent = styled(Component)`
+  ${baseStyle}
   @media screen and (max-width: 1100px) {
   }
   @media screen and (max-width: 768px) {
@@ -21,7 +27,7 @@ const StyledComponent = styled(Component)`
 
 const Container: React.FCX<ContainerProps> = ({ path }) => (
   <>
-    <SEO title='about' pathname={path} />
+    <SEO title='Not Found' pathname={path} />
     <StyledComponent />
   </>
 );

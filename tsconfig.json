@@ -1,33 +1,36 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "umd",
-    "jsx": "react",
-    "lib": ["dom", "es2015", "es2020"],
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "es2015", "es2020"],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
 
     "strict": true,
-
     "esModuleInterop": true,
-
     "isolatedModules": true,
-    "assumeChangesOnlyAffectDirectDependencies": true,
-
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
 
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*"]
     },
-    "typeRoots": ["types", "node_modules/@types"]
+    "typeRoots": ["src/types", "node_modules/@types"]
   },
   "watchOptions": {
-    "watchFile": "dynamicPriorityPolling",
-    "watchDirectory": "dynamicPriorityPolling",
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
     "fallbackPolling": "dynamicPriority"
-  }
+  },
+  "exclude": ["node_modules", "public", ".cache"]
 }
