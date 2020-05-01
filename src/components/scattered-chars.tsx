@@ -21,8 +21,10 @@ const Block: React.FCX<BlockProps> = ({ ch }) => {
   });
 
   return (
-    <animated.h2 {...bind()} style={{ x: x, y: y, cursor: cursor }}>
-      {ch}
+    // eslint-disable-next-line prettier/prettier
+    // eslint-disable-next-line object-shorthand
+    <animated.h2 {...bind()} style={{ x: x, y: y, cursor: cursor }} id={ch === ` ` ? `scattered-chars-space` : ``}>
+      {ch === ` ` ? `H` : ch}
     </animated.h2>
   );
 };
@@ -30,6 +32,7 @@ const Block: React.FCX<BlockProps> = ({ ch }) => {
 const Component: React.FCX<Props> = memo(({ className, chars }) => (
   <ul className={className}>
     {Array.from(chars).map((ch: string, i: number) => (
+      // eslint-disable-next-line react/no-array-index-key
       <li key={i}>
         <Block ch={ch} />
       </li>
@@ -38,6 +41,12 @@ const Component: React.FCX<Props> = memo(({ className, chars }) => (
 ));
 
 const StyledComponent = styled(Component)`
+  #scattered-chars-space {
+    font-size: 2rem;
+    pointer-events: none;
+    opacity: 0;
+  }
+
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -50,7 +59,7 @@ const StyledComponent = styled(Component)`
     touch-action: none;
     user-select: none;
     > h2 {
-      font-size: 8rem;
+      font-size: 5rem;
       color: #ffffff;
       user-select: none;
     }

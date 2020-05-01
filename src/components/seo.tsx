@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import Helmet from 'react-helmet';
+import { useAnyImage, useSiteBuildTime, useSiteMetadata } from 'src/hooks';
 import { JsonLdConfig } from 'src/types';
-
-import { useAnyImage, useSiteBuildTime, useSiteMetadata } from '../hooks';
 
 type Props = {
   title?: string;

@@ -1,11 +1,10 @@
 import { Link } from 'gatsby';
 import React, { memo } from 'react';
+import { useTheme } from 'src/theme';
+import { Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 import { Location } from '@reach/router';
-
-import { Theme } from '../../../types';
-import { useTheme } from '../../theme';
 
 const GithubSlugger = require(`github-slugger`);
 

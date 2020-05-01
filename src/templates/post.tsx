@@ -1,11 +1,13 @@
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import React, { memo } from 'react';
+import { Background, PrevNextCard, SEO, SideContents } from 'src/components';
+import { PostData, PostNode, PostPageContext } from 'src/types';
 
 import styled from '@emotion/styled';
 
-import { PostData, PostNode, PostPageContext } from '../../types';
-import { Background, PostBody, PostHeader, PrevNextCard, SEO, SideContents } from '../components';
+import PostBody from './post-body';
+import PostHeader from './post-header';
 
 type ContainerProps = { path: string; data: PostData; pageContext: PostPageContext };
 type Props = {
@@ -27,7 +29,7 @@ const Component: React.FCX<Props> = memo(
       <PostHeader title={title} date={date} tags={tags} />
       <article>
         <PostBody cover={fluid} body={body} />
-        <SideContents headings={headings} title={title || 'blog'} slug={slug} />
+        <SideContents headings={headings} title={title || `blog`} slug={slug} />
       </article>
       <PrevNextCard prev={previous} next={next} />
     </main>

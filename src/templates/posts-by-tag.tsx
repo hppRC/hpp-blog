@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
+import { ArticleCard, Background, ScatteredChars, SEO } from 'src/components';
+import { postsStyle } from 'src/styles';
+import { Frontmatter, PostsByTagPageContext } from 'src/types';
 
 import styled from '@emotion/styled';
-
-import { Frontmatter, PostsByTagPageContext } from '../../types';
-import { ArticleCard, Background, ScatteredChars, SEO } from '../components';
-import { postsStyle } from '../styles';
 
 type ContainerProps = { pageContext: PostsByTagPageContext; path: string };
 type Props = {
@@ -19,10 +18,11 @@ const Component: React.FCX<Props> = memo(({ className, tagName, posts }) => (
       <ScatteredChars chars={tagName} />
     </section>
     <ul>
-      {posts.map(({ excerpt, frontmatter }, i) => {
+      {posts.map(({ excerpt, frontmatter }) => {
+        const { slug } = frontmatter;
         const fluid = frontmatter.cover?.childImageSharp.fluid;
         return (
-          <li key={i}>
+          <li key={slug}>
             <ArticleCard frontmatter={frontmatter} fluid={fluid} excerpt={excerpt} />
           </li>
         );

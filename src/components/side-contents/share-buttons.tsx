@@ -1,12 +1,13 @@
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
     FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon,
     TwitterShareButton
 } from 'react-share';
+import { useSiteMetadata } from 'src/hooks';
 
 import styled from '@emotion/styled';
-
-import { useSiteMetadata } from '../../hooks';
 
 type ContainerProps = { title: string; slug: string };
 type Props = { twitter: string; siteUrl: string } & ContainerProps;
@@ -42,7 +43,7 @@ const StyledHatebuButton = styled(HatebuButton)`
 
 const Component: React.FCX<Props> = ({ className, title, slug, twitter, siteUrl }) => {
   const twitterAccount = twitter.split(`/`).pop(); // @hpp_ricecaeke -> hpp_ricecake
-  const articleUrl = `${siteUrl}blog/${slug}`;
+  const articleUrl = `${siteUrl}posts/${slug}`;
   return (
     <div className={className}>
       <FacebookShareButton url={articleUrl}>
@@ -91,7 +92,7 @@ const StyledComponent = styled(Component)`
 `;
 
 const Container: React.FCX<ContainerProps> = ({ title, slug }) => {
-  const { siteUrl = 'https://blog.hpprc.com', social = {} } = useSiteMetadata();
+  const { siteUrl = `https://blog.hpprc.com`, social = {} } = useSiteMetadata();
   const { twitter = `https://twitter.com/hpp_ricecake` } = social;
 
   return <StyledComponent {...{ twitter, siteUrl, title, slug }} />;
