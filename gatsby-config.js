@@ -143,6 +143,7 @@ const RSSFeedPlugin = {
 module.exports = {
   siteMetadata,
   plugins: [
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
