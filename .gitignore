@@ -74,3 +74,5 @@ cypress/videos
 cypress/screenshots
 
 junit.xml
+
+update.sh
