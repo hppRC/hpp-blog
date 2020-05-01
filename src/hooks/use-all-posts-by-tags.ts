@@ -28,6 +28,7 @@ export default () => {
   const postsByTag: PostsByTag = {};
 
   nodes.forEach((node) => {
+    // eslint-disable-next-line no-unused-expressions
     node.frontmatter.tags?.forEach((tag) => {
       if (!postsByTag[tag]) postsByTag[tag] = [];
 
