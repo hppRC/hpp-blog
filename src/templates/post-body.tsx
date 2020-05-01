@@ -35,7 +35,7 @@ const StyledComponent = styled(Component)`
     left: min(calc(-1 * min((100vw - 1200px) / 2, 2vw)), -1vw);
     padding: 1rem 0;
     margin: 6rem 0 1rem 0;
-    font-size: 5.5rem;
+    font-size: 3rem;
     color: ${({ theme }) => theme.color};
     border-bottom: ${({ theme }) => theme.headingBorder};
     border-radius: 1px;
@@ -46,7 +46,7 @@ const StyledComponent = styled(Component)`
     left: min(calc(-1 * min((100vw - 1200px) / 2, 1vw)), -0.5vw);
     padding: 0.8rem 0;
     margin: 4rem 0 0.8rem 0;
-    font-size: 4rem;
+    font-size: 2.5rem;
     border-bottom: ${({ theme }) => theme.headingBorder};
     border-radius: 1px;
     transition: border-bottom 0.3s;
@@ -56,7 +56,7 @@ const StyledComponent = styled(Component)`
     left: min(calc(-1 * min((100vw - 1200px) / 2, 0.5vw)), -0.2vw);
     padding: 0.5rem 0;
     margin: 2rem 0 1rem 0;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   > p {
