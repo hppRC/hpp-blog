@@ -1,23 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import Layout from 'src/layout';
 
-import styled from '@emotion/styled';
+export const WrapPageElement: ReactNode = ({ element }: { element: React.FCX }) => <Layout>{element}</Layout>;
 
-type ContainerProps = { element: React.ReactNode };
-type Props = {} & ContainerProps;
-
-const Component: React.FCX<Props> = ({ element }) => <>{element}</>;
-
-const StyledComponent = styled(Component)`
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
-  @media screen and (max-height: 430px) {
-  }
-`;
-
-const Container: React.FCX<ContainerProps> = (props) => <StyledComponent {...props} />;
-
-export default Container;
+export default WrapPageElement;

@@ -1,82 +1,26 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Helmet from 'react-helmet';
-import { useAnyImage, useSiteBuildTime, useSiteMetadata } from 'src/hooks';
-import { DeepPartial, DeepReadonly } from 'utility-types';
+import { JsonLdConfig } from 'src/types';
 
-type Props = Readonly<
-  Partial<{
-    title: string;
-    description: string;
-    pathname: string;
-    image: string;
-  }>
->;
+import { useAnyImage, useSiteBuildTime, useSiteMetadata } from '../hooks';
 
-type JsonLdConfigProps = DeepReadonly<
-  DeepPartial<{
-    '@context': string;
-    '@type': string;
-    inLanguage: string;
-    url: string;
-    headline: string;
-    name: string;
-    alternateName: string;
-    description: string;
-    author: {
-      '@type': string;
-      name: string;
-      sameas: string;
-      url: string;
-      image: {
-        '@type': string;
-        url: string;
-        width: number;
-        height: number;
-      };
-    }[];
-    publisher: {
-      '@type': string;
-      name: string;
-      description: string;
-      logo: {
-        '@type': string;
-        url: string;
-        width: number;
-        height: number;
-      };
-    };
-    image:
-      | {
-          '@type': string;
-          url: string;
-        }
-      | string;
-    itemListElement: [
-      {
-        '@type': string;
-        position: number;
-        item: {
-          '@id': string;
-          name: string;
-          image: string;
-        };
-      }
-    ];
-    datePublished: string;
-    dateModified: string;
-    potentialAction: {};
-    mainEntityOfPage: {
-      '@type': string;
-      '@id': string;
-    };
-  }>
->[];
+type Props = {
+  title?: string;
+  description?: string;
+  pathname?: string;
+  image?: string;
+};
 
 const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, image = `` }) => {
-  const metadata = useSiteMetadata() || {};
+  const siteMetadata = useSiteMetadata();
   const buildTime = useSiteBuildTime();
-  const icon = useAnyImage(`icon.png`);
-  const banner = useAnyImage(`banner.png`);
+  const iconPNG = useAnyImage(`icon.png`);
+  const iconJPG = useAnyImage(`icon.jpg`);
+  const bannerPNG = useAnyImage(`banner.png`);
+  const bannerJPG = useAnyImage(`banner.jpg`);
+
+  const icon = iconPNG || iconJPG;
+  const banner = bannerPNG || bannerJPG;
 
   const {
     siteTitle,
@@ -85,10 +29,10 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
     siteDescription: defaultDescription,
     siteLanguage,
     author,
-    social,
-  } = metadata;
+    social = {},
+  } = siteMetadata;
 
-  const { twitter, github, qiita } = social || {};
+  const { twitter, github, qiita } = social;
 
   const seo = {
     title: title || defaultTitle,
@@ -138,7 +82,7 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
     },
   };
 
-  const jsonLdConfigs: JsonLdConfigProps = [
+  const jsonLdConfigs: JsonLdConfig = [
     {
       '@context': `http://schema.org`,
       '@type': `WebSite`,
@@ -150,11 +94,11 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
       description: seo.description,
       author: jsonLdAuthor,
       publisher,
-      // potentialAction: {
-      //   '@type': 'SearchAction',
-      //   target: `${siteUrl}/search?q={q}`,
-      //   'query-input': 'required name=q'
-      // }
+      potentialAction: {
+        '@type': `SearchAction`,
+        target: `${siteUrl}/search?q={q}`,
+        'query-input': `required name=q`,
+      },
     },
   ];
 
@@ -202,8 +146,6 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
     <Helmet title={title} defaultTitle={defaultTitle} titleTemplate={`%s | ${siteTitle}`}>
       <html lang={siteLanguage} />
 
-      <meta name='viewport' content='width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no' />
-
       <meta name='description' content={seo.description} />
       <meta name='image' content={seo.image} />
 
@@ -226,4 +168,4 @@ const SEO: React.FCX<Props> = ({ title = ``, description = ``, pathname = ``, im
   );
 };
 
-export default SEO;
+export default memo(SEO);
