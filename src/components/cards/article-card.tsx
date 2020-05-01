@@ -39,7 +39,7 @@ const Component: React.FCX<Props> = memo(({ className, excerpt, frontmatter, ima
       onMouseLeave={() => setEnter(false)}
       style={sp}
     >
-      <Link to={`posts/${slug}`}>
+      <Link to={`/posts/${slug}`}>
         <MemolizedImage fluid={image} />
         <div>
           <h2>{title}</h2>
@@ -89,7 +89,7 @@ const StyledComponent = styled(Component)`
       padding: 1rem 2rem 2rem 2rem;
 
       > h2 {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
       > p {
         font-size: 1.4rem;

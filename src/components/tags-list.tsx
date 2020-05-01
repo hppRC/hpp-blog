@@ -13,7 +13,7 @@ const Component: React.FCX<Props> = memo(({ className, tags, isTitle }) => (
     {tags?.map((tag, i) =>
       isTitle ? (
         <li key={i}>
-          <Link to={`tags/${tag}`}>{tag}</Link>
+          <Link to={`/tags/${tag}`}>{tag}</Link>
         </li>
       ) : (
         <li key={i}>{tag}</li>

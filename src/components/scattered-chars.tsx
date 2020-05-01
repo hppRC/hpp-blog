@@ -4,7 +4,7 @@ import { useDrag } from 'react-use-gesture';
 
 import styled from '@emotion/styled';
 
-type ContainerProps = { chars: string };
+type ContainerProps = { chars: string; isTitle?: boolean };
 type Props = {} & ContainerProps;
 type BlockProps = { ch: string };
 
@@ -59,7 +59,7 @@ const StyledComponent = styled(Component)`
     touch-action: none;
     user-select: none;
     > h2 {
-      font-size: 5rem;
+      font-size: ${({ isTitle }) => (isTitle ? `8rem` : `5rem`)};
       color: #ffffff;
       user-select: none;
     }
@@ -91,6 +91,8 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = ({ chars }) => <StyledComponent chars={chars} />;
+const Container: React.FCX<ContainerProps> = ({ chars, isTitle }) => (
+  <StyledComponent chars={chars} isTitle={isTitle} />
+);
 
 export default memo(Container);

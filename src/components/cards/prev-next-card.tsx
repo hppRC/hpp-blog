@@ -31,13 +31,13 @@ const Card: React.FCX<CardProps> = memo(({ node }) => {
 
   return (
     <animated.article style={sp} onMouseEnter={() => setEnter(true)} onMouseLeave={() => setEnter(false)}>
-      <Link to={`posts/${slug}`}>
+      <Link to={`/posts/${slug}`}>
         <MemolizedImage fluid={fluid} />
         <section>
           <h2>{title}</h2>
           <p>{date}</p>
           <TagsList tags={tags} />
-          <p>{excerpt}</p>
+          {(title?.length ?? 0) >= 30 ? <></> : <p>{excerpt}</p>}
         </section>
         <DecoMoon enter={enter} />
       </Link>
