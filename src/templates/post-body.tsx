@@ -105,15 +105,15 @@ const StyledComponent = styled(Component)`
     padding: 0 2rem;
     > h1 {
       margin: 2rem 0 1rem 0;
-      font-size: 3.5rem;
+      font-size: 2.5rem;
     }
     > h2 {
       margin-top: 0.8rem;
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
     > h3 {
       margin-top: 0.5rem;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
 
     > p {

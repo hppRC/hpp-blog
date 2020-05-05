@@ -1,11 +1,12 @@
 const siteTitle = `hpp blog🌝`;
+const siteDescription = `Personal blog made with Gatsby, TypeScript, and many interactions!`;
 
 const siteMetadata = {
   siteTitle,
   siteTitleAlt: `hpp blog - @hppRC/hpp-blog`,
   siteHeadline: `personal blog of @hppRC`,
   siteUrl: `https://blog.hpprc.com`,
-  siteDescription: `personal blog made with Gatsby, TypeScript.`,
+  siteDescription,
   siteLanguage: `ja`,
   siteImage: `/banner.jpg`,
   author: `@hpp_ricecake`, // twitter account id
@@ -166,6 +167,8 @@ module.exports = {
     {
       resolve: `@hpprc/gatsby-theme-core`,
       options: {
+        siteTitle,
+        siteDescription,
         iconPath: `./contents/assets/icon.png`,
       },
     },

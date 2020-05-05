@@ -24,7 +24,7 @@ const Component: React.FCX<Props> = memo(({ className }) => {
       const sp = window.innerWidth < 480;
 
       set({
-        translate: `translate3d(-${Math.min(y * 0.2, ref?.current?.offsetWidth ?? 0 - 30)}px, 0, 0)`,
+        translate: `translate3d(-${Math.min(y * 0.2, (ref?.current?.offsetWidth ?? 0) - 30)}px, 0, 0)`,
         scale: `scale(${Math.min(sp ? 1.8 : 1.5, 1 + y * 0.001)})`,
         width: `${bk ? 10 : Math.min(32, 5 + y * 0.05)}px`,
       });

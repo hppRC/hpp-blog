@@ -67,14 +67,14 @@ const StyledComponent = styled(Component)`
   @media screen and (max-width: 1100px) {
     > li {
       > h2 {
-        font-size: 10rem;
+        font-size: ${({ isTitle }) => (isTitle ? `7rem` : `4rem`)};
       }
     }
   }
   @media screen and (max-width: 768px) {
     > li {
       > h2 {
-        font-size: 6rem;
+        font-size: ${({ isTitle }) => (isTitle ? `5rem` : `3.5rem`)};
       }
     }
   }
@@ -83,7 +83,7 @@ const StyledComponent = styled(Component)`
     padding: 0.6rem;
     > li {
       > h2 {
-        font-size: 4rem;
+        font-size: ${({ isTitle }) => (isTitle ? `3rem` : `2rem`)};
       }
     }
   }

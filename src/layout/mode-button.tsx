@@ -25,7 +25,7 @@ const StyledComponent = styled(Component)`
   border: ${({ mode }) => (mode ? `2px solid var(--light-border-color)` : `2px solid var(--dark-border-color)`)};
   border-radius: 4rem;
   outline: none;
-  transition: all 0.3s ease-in-out;
+  transition: border 0.3s ease-in-out;
 
   &::after {
     position: absolute;
@@ -45,7 +45,7 @@ const StyledComponent = styled(Component)`
     background-color: ${({ theme }) => theme.backgroundColor};
     border: ${({ mode }) => (mode ? `2px solid var(--dark-border-color)` : `2px solid var(--light-border-color)`)};
     border-radius: 2rem;
-    transition: all 0.3s ease-out;
+    transition: border 0.3s ease-out, background-color 0.3s ease-out;
     transform: ${({ mode }) => (mode ? `translate3d(2rem, 0, 0)` : `translate3d(-2rem, 0, 0)`)};
   }
 
@@ -56,7 +56,7 @@ const StyledComponent = styled(Component)`
     > div {
       width: 3.5rem;
       height: 3.5rem;
-      transition: all 0.25s ease-out;
+      transition: transform 0.25s ease-out;
       transform: ${({ mode }) => (mode ? `translate3d(1.75rem, 0, 0)` : `translate3d(-1.75rem, 0, 0)`)};
     }
   }
@@ -66,7 +66,6 @@ const StyledComponent = styled(Component)`
     > div {
       width: 3rem;
       height: 3rem;
-      transition: all 0.25s ease-out;
       transform: ${({ mode }) => (mode ? `translate3d(1.5rem, 0, 0)` : `translate3d(-1.5rem, 0, 0)`)};
     }
   }
