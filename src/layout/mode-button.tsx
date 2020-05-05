@@ -45,7 +45,7 @@ const StyledComponent = styled(Component)`
     background-color: ${({ theme }) => theme.backgroundColor};
     border: ${({ mode }) => (mode ? `2px solid var(--dark-border-color)` : `2px solid var(--light-border-color)`)};
     border-radius: 2rem;
-    transition: border 0.3s ease-out, background-color 0.3s ease-out;
+    transition: border 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
     transform: ${({ mode }) => (mode ? `translate3d(2rem, 0, 0)` : `translate3d(-2rem, 0, 0)`)};
   }
 
@@ -56,7 +56,6 @@ const StyledComponent = styled(Component)`
     > div {
       width: 3.5rem;
       height: 3.5rem;
-      transition: transform 0.25s ease-out;
       transform: ${({ mode }) => (mode ? `translate3d(1.75rem, 0, 0)` : `translate3d(-1.75rem, 0, 0)`)};
     }
   }

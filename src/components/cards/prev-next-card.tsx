@@ -180,6 +180,9 @@ const StyledComponent = styled(Component)`
           width: 100%;
           padding: 2rem;
           box-shadow: 0 0;
+          > h2 {
+            font-size: 1.8rem;
+          }
         }
       }
     }

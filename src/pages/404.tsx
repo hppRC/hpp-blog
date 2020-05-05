@@ -15,14 +15,6 @@ const Component: React.FCX<Props> = ({ className }) => (
 
 const StyledComponent = styled(Component)`
   ${baseStyle}
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
-  @media screen and (max-height: 430px) {
-  }
 `;
 
 const Container: React.FCX<ContainerProps> = ({ path }) => (

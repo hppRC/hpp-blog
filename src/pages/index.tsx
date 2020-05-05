@@ -30,9 +30,6 @@ const Component: React.FCX<Props> = ({ className, posts }) => (
 
 const StyledComponent = styled(Component)`
   ${postsStyle}
-  > section > ul > li > h2 {
-    font-size: 5rem;
-  }
 `;
 
 const Container: React.FCX<ContainerProps> = ({ path }) => {

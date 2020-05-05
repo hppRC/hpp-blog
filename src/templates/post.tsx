@@ -73,7 +73,10 @@ const StyledComponent = styled(Component)`
     width: 100%;
     > article {
       margin: 0;
-      padding: 2rem 0rem 10rem 0rem;
+      padding: 2rem 0rem 3rem 0rem;
+      > div:nth-of-type(1) {
+        margin: 0 0 6rem 0;
+      }
     }
   }
   @media screen and (max-height: 430px) {
