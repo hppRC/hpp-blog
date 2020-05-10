@@ -169,6 +169,7 @@ module.exports = {
       options: {
         siteTitle,
         siteDescription,
+        googleAnalyticsTrackingId: `UA-149661454-2`,
         iconPath: `./contents/assets/icon.png`,
       },
     },
