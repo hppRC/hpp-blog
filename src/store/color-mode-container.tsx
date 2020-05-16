@@ -4,7 +4,10 @@ import { createContainer } from 'unstated-next';
 const Store = () => {
   const prevMode = useMemo(() => {
     if (typeof localStorage !== `undefined`) {
-      return (localStorage.getItem(`mode`) || `true`) === `true`;
+      if (localStorage.getItem(`mode`) !== null) {
+        return window.matchMedia(`(prefers-color-scheme: light)`).matches;
+      }
+      return localStorage.getItem(`mode`) === `true`;
     }
     return true;
   }, []);
