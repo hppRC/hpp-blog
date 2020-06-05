@@ -5,7 +5,7 @@ import { ScatteredChars, TagsList } from 'src/components';
 import styled from '@emotion/styled';
 
 type ContainerProps = { title?: string; date?: string; tags?: string[] };
-type Props = {} & ContainerProps;
+type Props = ContainerProps;
 
 const Component: React.FCX<Props> = memo(({ className, title, date, tags }) => (
   <section className={className}>

@@ -6,8 +6,7 @@ import { Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 
-type ContainerProps = {};
-type Props = { theme: Theme; author: string } & ContainerProps;
+type Props = { theme: Theme; author: string };
 
 const Component: React.FCX<Props> = memo(({ className, author }) => (
   <footer className={className}>
@@ -79,7 +78,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = () => {
+const Container: React.FCX = () => {
   const { author } = useSiteMetadata();
   const theme = useTheme();
 

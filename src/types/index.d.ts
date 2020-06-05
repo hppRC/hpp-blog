@@ -15,13 +15,15 @@ export type Frontmatter = Partial<{
 
 export type UseAllPosts = {
   allMdx: {
-    nodes: {
-      body: string;
-      excerpt: string;
-      frontmatter: Frontmatter;
-    }[];
+    nodes: Nodes;
   };
 };
+
+export type Nodes = {
+  body: string;
+  excerpt: string;
+  frontmatter: Frontmatter;
+}[];
 
 export type PostsByTag = {
   [key: string]: { frontmatter: Frontmatter; excerpt: string }[];
@@ -56,22 +58,24 @@ export type UseSiteBuildtime = {
 
 export type UseSiteMetadata = {
   site: {
-    siteMetadata: DeepPartial<{
-      siteTitle: string;
-      siteTitleAlt: string;
-      siteHeadline: string;
-      siteUrl: string;
-      siteDescription: string;
-      siteLanguage: string;
-      author: string;
-      social: {
-        twitter: string;
-        github: string;
-        qiita: string;
-      };
-    }>;
+    siteMetadata: SiteMetadata;
   };
 };
+
+export type SiteMetadata = DeepPartial<{
+  siteTitle: string;
+  siteTitleAlt: string;
+  siteHeadline: string;
+  siteUrl: string;
+  siteDescription: string;
+  siteLanguage: string;
+  author: string;
+  social: {
+    twitter: string;
+    github: string;
+    qiita: string;
+  };
+}>;
 
 export type JsonLdConfig = Partial<{
   '@context': string;

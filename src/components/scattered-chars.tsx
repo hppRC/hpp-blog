@@ -5,7 +5,7 @@ import { useDrag } from 'react-use-gesture';
 import styled from '@emotion/styled';
 
 type ContainerProps = { chars: string; isTitle?: boolean };
-type Props = {} & ContainerProps;
+type Props = ContainerProps;
 type BlockProps = { ch: string };
 
 const Block: React.FCX<BlockProps> = ({ ch }) => {

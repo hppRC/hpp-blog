@@ -6,7 +6,7 @@ import Footer from './footer';
 import Header from './header';
 
 type ContainerProps = { children: React.FCX };
-type Props = {} & ContainerProps;
+type Props = ContainerProps;
 
 const Component: React.FCX<Props> = memo(({ children }) => (
   <>

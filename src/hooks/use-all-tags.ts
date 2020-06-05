@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { UseAllTags } from 'src/types';
 
-export default () => {
+export default (): string[] => {
   const { allMdx } = useStaticQuery<UseAllTags>(graphql`
     query {
       allMdx {

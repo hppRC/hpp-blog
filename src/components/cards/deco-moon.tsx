@@ -4,7 +4,7 @@ import { animated, config, useSpring } from 'react-spring';
 import styled from '@emotion/styled';
 
 type ContainerProps = { enter: boolean };
-type Props = {} & ContainerProps;
+type Props = ContainerProps;
 
 const Component: React.FCX<Props> = memo(({ className, enter }) => {
   const sp = useSpring({

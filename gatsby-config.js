@@ -113,7 +113,6 @@ const RSSFeedPlugin = {
               date,
               url: `${siteUrl}/posts${slug}`,
               guid: `${siteUrl}/posts${slug}`,
-              // eslint-disable-next-line @typescript-eslint/camelcase
               custom_elements: [{ 'content:encoded': body }],
             };
           });

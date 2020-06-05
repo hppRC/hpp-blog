@@ -5,9 +5,8 @@ import { baseStyle } from 'src/styles';
 import styled from '@emotion/styled';
 
 type ContainerProps = { path: string };
-type Props = {};
 
-const Component: React.FCX<Props> = ({ className }) => (
+const Component: React.FCX = ({ className }) => (
   <main className={className}>
     <h1>Contact</h1>
     <NetlifyForm />

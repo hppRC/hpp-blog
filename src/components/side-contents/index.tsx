@@ -13,7 +13,7 @@ type ContainerProps = {
   title: string;
   slug: string;
 };
-type Props = {} & ContainerProps;
+type Props = ContainerProps;
 
 const Component: React.FCX<Props> = memo(({ className, headings, title, slug }) => (
   <div className={className}>

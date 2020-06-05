@@ -23,7 +23,7 @@ const darkTheme = {
   tocBackground: `#141721`,
 } as const;
 
-export const useTheme = () => {
+export const useTheme = (): Theme => {
   const theme = useETheme<Theme>();
   return theme;
 };

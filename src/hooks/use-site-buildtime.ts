@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import { UseSiteBuildtime } from 'src/types';
 
-export default () => {
+export default (): string => {
   const { site } = useStaticQuery<UseSiteBuildtime>(graphql`
     query {
       site {

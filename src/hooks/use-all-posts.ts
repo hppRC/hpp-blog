@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { UseAllPosts } from 'src/types';
+import { Nodes, UseAllPosts } from 'src/types';
 
-export default () => {
+export default (): Nodes => {
   const { allMdx } = useStaticQuery<UseAllPosts>(graphql`
     query {
       allMdx(sort: { order: ASC, fields: [frontmatter___date] }) {

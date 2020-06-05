@@ -5,8 +5,7 @@ import { Theme } from 'src/types';
 
 import styled from '@emotion/styled';
 
-type ContainerProps = {};
-type Props = { mode: boolean; toggle: () => void; theme: Theme } & ContainerProps;
+type Props = { mode: boolean; toggle: () => void; theme: Theme };
 
 const Component: React.FCX<Props> = memo(({ className, toggle }) => (
   <button onClick={toggle} type='button' className={className} aria-label='color mode change button'>
@@ -72,7 +71,7 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = () => {
+const Container: React.FCX = () => {
   const { mode, toggle } = ColorModeContainer.useContainer();
   const theme = useTheme();
   return <StyledComponent mode={mode} toggle={toggle} theme={theme} />;

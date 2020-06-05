@@ -5,10 +5,7 @@ import styled from '@emotion/styled';
 import ModeButton from './mode-button';
 import SlideInOutTitle from './slide-in-out-title';
 
-type ContainerProps = {};
-type Props = {} & ContainerProps;
-
-const Component: React.FCX<Props> = ({ className }) => (
+const Component: React.FCX = ({ className }) => (
   <header className={className}>
     <div>
       <SlideInOutTitle />
@@ -69,6 +66,6 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: React.FCX<ContainerProps> = () => <StyledComponent />;
+const Container: React.FCX = () => <StyledComponent />;
 
 export default Container;
