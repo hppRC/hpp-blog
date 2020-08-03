@@ -29,10 +29,7 @@ const StyledComponent = styled(Component)`
       height: 100vh;
     }
   }
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
+
   @media screen and (max-width: 480px) {
     > .gatsby-image-wrapper {
       height: 40vh;
@@ -43,8 +40,6 @@ const StyledComponent = styled(Component)`
         height: 50vh;
       }
     }
-  }
-  @media screen and (max-height: 430px) {
   }
 `;
 

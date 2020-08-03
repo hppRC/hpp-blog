@@ -19,15 +19,6 @@ export default (): JSX.Element => {
         .gatsby-code-title {
           background-color: ${theme.codeBackground};
         }
-
-        @media screen and (max-width: 1100px) {
-        }
-        @media screen and (max-width: 768px) {
-        }
-        @media screen and (max-width: 480px) {
-        }
-        @media screen and (max-height: 430px) {
-        }
       `}
     />
   );
